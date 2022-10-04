@@ -26,3 +26,5 @@ for(let mina = 0; mina < numMinas; mina++){
     console.log(posFila);
     // arrayTablero[posFila][posColumna] = 'MINA';
 }
+
+// prueba para el GitHub
