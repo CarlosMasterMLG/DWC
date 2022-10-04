@@ -46,3 +46,5 @@ while (contadorMinas < numMinas) {
 
 console.log(arrayTablero);
 
+
+// comando de prueba
