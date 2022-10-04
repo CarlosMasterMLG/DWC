@@ -47,3 +47,37 @@ while (contadorMinas < numMinas) {
 console.log(arrayTablero);
 
 
+// intento de contar las minas alrededor
+
+posFila = 2;
+posColumna = 2;
+
+let numeroMinasAlrededor = 0;
+
+//de la fila anterior a la posterior
+for (let zFila = fila-1; zFila <= fila+1; zFila++){
+
+    //de la columna anterior a la posterior
+    for(let zColumna = columna-1; zColumna <= columna+1; zColumna++){
+
+        //si la casilla cae dentro dle tablero
+        if(zFila>-1 && zFila<maxFilas && zColumna>-1 && zColumna<maxColumnas){
+
+            //miramos si en esa posición hay bomba
+            if(arrayTablero[posFila][posColumna]=='MINA'){
+
+                //sumamos 1 al número de minas que hay alrededor de esa casilla
+                numeroMinasAlrededor++;
+
+            }
+
+        }
+
+    }
+
+    //guardamos el número de minas
+    arrayTablero[posFila][posColumna] = numeroMinasAlrededor;
+
+}
+
+console.log(numeroMinasAlrededor);
