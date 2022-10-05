@@ -81,3 +81,5 @@ for (let zFila = fila-1; zFila <= fila+1; zFila++){
 }
 
 console.log(numeroMinasAlrededor);
+
+//prueba
