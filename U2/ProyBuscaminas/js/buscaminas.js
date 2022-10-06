@@ -50,7 +50,7 @@ let fila = 2;
 let columna = 1; 
 let numMinasAlrededor = 0;
 
-for (let fila = 0;fila < maxFilas; fila++;){
+for (let fila = 0;fila < maxFilas; fila++){
     for (let columna = 0; columna < maxColumnas;columna++){
 
         if(arrayTablero[fila][columna] != 'MINA'){
