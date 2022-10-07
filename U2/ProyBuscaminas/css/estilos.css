@@ -4,9 +4,10 @@ table{
     text-align: center;
 }
 
-td, table{
+td, tr, table{
     border: solid 1px black;
     border-collapse: collapse;
+    background-color: white;
 }
 td{
     text-align: center;
