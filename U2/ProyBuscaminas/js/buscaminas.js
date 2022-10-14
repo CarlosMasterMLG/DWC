@@ -7,6 +7,8 @@ let posFila;
 let posColumna;
 let numMinasAlrededor;
 
+//falta no usar variables globales
+
 crearTablero(arrayTablero);
 colocarMinas(arrayTablero, contadorMinas, numMinas, posFila, posColumna);
 contarMinas(maxFilas, maxColumnas, numMinasAlrededor, arrayTablero);
