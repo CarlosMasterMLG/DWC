@@ -4,13 +4,7 @@ class Tablero {
         this.columnas = columnas;
 
         this.crearTablero();
-        this.pintarTablero();
     }
-
-    // Lo siguiente iria fuera de la clase (donde cierra la llave de la clase)
-    // const tableroBuscaminas = new Tablero(3,5);
-    // console.log(tableroBuscaminas);
-    // Ctrl + a y luego Ctrl + alt + n para ver en la terminal como el constructor cre un objeto Tablero
 
     crearTablero() {
         // Crear array bidimensional para guardar las minas
@@ -25,7 +19,7 @@ class Tablero {
         }
     }
 
-    pintarTablero() {
+    dibujarTablero() {
         // Creamos el tablero en html
         document.write('<table>');
 
@@ -33,30 +27,28 @@ class Tablero {
             document.write('<tr>');
 
             for (let j = 0; j < this.columnas; j++) {
-                if (this.crearTablero[i][j] != 0) {
-                    document.write('<td>' + this.crearTablero[i][j] + '</td>');
-                } else {
-                    document.write('<td></td>');
-                }
+                document.write(`<td>${this.arrayTablero[i][j]}</td>`);
             }
 
             document.write('</tr>');
         }
         document.write('</table>');
-
     }
 
+    modificarFilas(nuevasFilas){
+        this.filas = nuevasFilas;
+        crearTablero();
+    }
+
+    modificarColumnas(nuevasColumnas){
+        this.columnas = nuevasColumnas;
+        crearTablero();
+    }
 
 
 
 
 }
 
-
-
-const buscamminas = new Tablero(3, 6);
-console.log(buscamminas.filas);
-console.log(buscamminas.columnas);
-console.log(buscamminas.arrayTablero);
-
-console.log(buscamminas.pintarTablero);
+const buscaminas = new Tablero(4, 3);
+buscaminas.dibujarTablero();
