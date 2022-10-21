@@ -67,6 +67,20 @@ for (let i = 0; i < maxFilas; i++) {
             
                 x = Math.floor(Math.random() * parejas.length + 1);
                 arrayTablero[i][j] = x;
+                
+                /*
+
+                while (true) {
+                    
+                    let filaPareja = Math.floor(Math.random() * arrayTablero.length + 1);
+                    let columnaPareja = Math.floor(Math.random() * arrayTablero.length + 1);
+
+                    if (arrayTablero[filaPareja][columnaPareja] == '') {
+                        arrayTablero[filaPareja][columnaPareja] = ''
+                        break;
+                    }
+
+                } */
             
             }
 
@@ -75,7 +89,6 @@ for (let i = 0; i < maxFilas; i++) {
     }
     
 }
-
 
 
 
@@ -110,15 +123,3 @@ for (let i = 0; i < maxFilas; i++) {
 
 document.write('</table>');
 
-
-
-// pruebas
-arrayTablero[1][1] = '3';
-
-if (arrayTablero[0][0] == '') {
-    arrayTablero[0][0] = 2;    
-    
-}
-
-document.write(arrayTablero[1][1]);
-document.write(arrayTablero[0][0]);
