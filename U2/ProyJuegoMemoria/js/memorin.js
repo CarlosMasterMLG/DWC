@@ -26,7 +26,7 @@ for (let fila = 0; fila < maxFilas; fila++) {
 }
 
 // Crear elementos para parejas y añadirlos al tablero
-
+/*
 let parejas = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
 let contadorParejas = 0;
@@ -52,6 +52,41 @@ while (contadorParejas < (numCasillas / 2)){
     contadorParejas++;
 
 }
+
+*/
+
+let parejas = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
+for (let i = 0; i < maxFilas; i++) {
+
+    for (let j = 0; j < maxColumnas; j++) {
+        
+        if (arrayTablero[i][j] == '') {
+            
+            for (let index = 0; index < parejas.length; index++) {
+            
+                x = Math.floor(Math.random() * parejas.length);
+                arrayTablero[i][j] = x;
+            
+            }
+
+        }
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
