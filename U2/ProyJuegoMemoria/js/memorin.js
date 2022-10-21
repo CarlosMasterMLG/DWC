@@ -24,6 +24,13 @@ for (let fila = 0; fila < maxFilas; fila++) {
     
 }
 
+
+
+
+
+
+
+
 // Pintar tablero en html
 document.write('<table>');
 
