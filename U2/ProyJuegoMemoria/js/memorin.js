@@ -2,12 +2,13 @@
 let maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
 let maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 
-
 while((maxFilas * maxColumnas) % 2 != 0){
     alert('ERROR\nEl número de casillas debe permitir parejas');
     maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
     maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 }
+
+let numeroCasillas = maxFilas * maxColumnas;
 
 // Crear tablero
 let arrayTablero = [];
@@ -24,6 +25,12 @@ for (let fila = 0; fila < maxFilas; fila++) {
     
 }
 
+// Crear elementos para parejas y añadirlos al tablero
+
+let parejas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+let posFila;
+let posColumna;
 
 
 
