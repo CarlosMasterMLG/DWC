@@ -8,7 +8,7 @@ while((maxFilas * maxColumnas) % 2 != 0){
     maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 }
 
-let numeroCasillas = maxFilas * maxColumnas;
+let numCasillas = maxFilas * maxColumnas;
 
 // Crear tablero
 let arrayTablero = [];
@@ -27,12 +27,25 @@ for (let fila = 0; fila < maxFilas; fila++) {
 
 // Crear elementos para parejas y añadirlos al tablero
 
-let parejas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let parejas = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
+let contadorParejas;
 let posFila;
 let posColumna;
+let posicionArrayParejas = 0;
 
+while (contadorParejas < (numCasillas / 2)){
 
+    posFila = Math.floor(Math.random() * maxFilas);
+    posColumna = Math.floor(Math.random() * maxColumnas);
+
+    if (arrayTablero[posFila][posColumna] != '') {
+        arrayTablero[posFila][posColumna] = 2;
+    }
+
+    posicionArrayParejas++;
+
+}
 
 
 
@@ -47,7 +60,7 @@ for (let i = 0; i < maxFilas; i++) {
 
     for (let j = 0; j < maxColumnas; j++) {
         
-        document.write('<td>' + "Hola" + '</td>');
+        document.write('<td>' + arrayTablero[i][j] + '</td>');
         
     }
     document.write('</tr>');
@@ -55,3 +68,5 @@ for (let i = 0; i < maxFilas; i++) {
 
 
 document.write('</table>');
+
+document.write(arrayTablero[1][1]);
