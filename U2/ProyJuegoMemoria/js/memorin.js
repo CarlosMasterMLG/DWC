@@ -26,13 +26,21 @@ for (let fila = 0; fila < maxFilas; fila++) {
 }
 
 // Colocar parejas de forma equilibrada (que no haya, por ejemplo, 4 parejas de 2 y una del resto).
-let parejas = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-
+let parejas = [
+                "/stickers/bluetooth.svg",
+                "/stickers/discord.svg",
+                "/stickers/gamepad-solid.svg",
+                "/stickers/java.svg",
+                "/stickers/jedi-order.svg",
+                "/stickers/php.svg",
+                "/stickers/square-github.svg", 
+                "/stickers/twitch.svg", 
+                "/stickers/user-ninja-solid.svg",
+                "/stickers/xbox.svg"
+            ];
 let posFila = 0;
 let posColumna = 0;
-
 let numParejas = 0;
-
 let contadorArray = 0;
 
 while (numParejas != (numCasillas/2)) {
@@ -61,7 +69,6 @@ while (numParejas != (numCasillas/2)) {
 
     arrayTablero[posFila][posColumna] = parejas[contadorArray];
 
-
     contadorArray++;
     numParejas++;
 
@@ -80,12 +87,10 @@ for (let i = 0; i < maxFilas; i++) {
 
     for (let j = 0; j < maxColumnas; j++) {
         
-        document.write('<td>' + arrayTablero[i][j] + '</td>');
+        document.write('<td><img src=' + arrayTablero[i][j] + '></td>');
         
     }
     document.write('</tr>');
 }
 
-
 document.write('</table>');
-
