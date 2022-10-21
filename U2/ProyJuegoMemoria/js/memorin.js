@@ -65,7 +65,7 @@ for (let i = 0; i < maxFilas; i++) {
             
             for (let index = 0; index < parejas.length; index++) {
             
-                x = Math.floor(Math.random() * parejas.length);
+                x = Math.floor(Math.random() * parejas.length + 1);
                 arrayTablero[i][j] = x;
             
             }
