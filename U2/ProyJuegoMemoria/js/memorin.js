@@ -25,85 +25,51 @@ for (let fila = 0; fila < maxFilas; fila++) {
     
 }
 
-// Crear elementos para parejas y añadirlos al tablero
-/*
+// Colocar parejas de forma equilibrada (que no haya, por ejemplo, 4 parejas de 2 y una del resto).
 let parejas = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
-let contadorParejas = 0;
-let posFila;
-let posColumna;
-let posFila2;
-let posColumna2;
+let posFila = 0;
+let posColumna = 0;
 
-while (contadorParejas < (numCasillas / 2)){
+let numParejas = 0;
+
+let contadorArray = 0;
+
+while (numParejas != (numCasillas/2)) {
 
     posFila = Math.floor(Math.random() * maxFilas);
     posColumna = Math.floor(Math.random() * maxColumnas);
 
-    posFila2 = Math.floor(Math.random() * maxFilas);
-    posColumna2 = Math.floor(Math.random() * maxColumnas);
+    while (arrayTablero[posFila][posColumna] != '') {
+        
+        posFila = Math.floor(Math.random() * maxFilas);
+        posColumna = Math.floor(Math.random() * maxColumnas);
 
-    if (arrayTablero[posFila][posColumna] == '') {
-        arrayTablero[posFila][posColumna] = parejas[contadorParejas];
-        arrayTablero[posFila2][posColumna2] = parejas[contadorParejas];
     }
-    
 
-    contadorParejas++;
+    arrayTablero[posFila][posColumna] = parejas[contadorArray];
 
-}
+    posFila = Math.floor(Math.random() * maxFilas);
+    posColumna = Math.floor(Math.random() * maxColumnas);
 
-*/
-
-let parejas = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-
-for (let i = 0; i < maxFilas; i++) {
-
-    for (let j = 0; j < maxColumnas; j++) {
+    while (arrayTablero[posFila][posColumna] != '') {
         
-        if (arrayTablero[i][j] == '') {
-            
-            for (let index = 0; index < parejas.length; index++) {
-            
-                x = Math.floor(Math.random() * parejas.length + 1);
-                arrayTablero[i][j] = x;
-                
-                /*
+        posFila = Math.floor(Math.random() * maxFilas);
+        posColumna = Math.floor(Math.random() * maxColumnas);
 
-                while (true) {
-                    
-                    let filaPareja = Math.floor(Math.random() * arrayTablero.length + 1);
-                    let columnaPareja = Math.floor(Math.random() * arrayTablero.length + 1);
+    }
 
-                    if (arrayTablero[filaPareja][columnaPareja] == '') {
-                        arrayTablero[filaPareja][columnaPareja] = ''
-                        break;
-                    }
+    arrayTablero[posFila][posColumna] = parejas[contadorArray];
 
-                } */
-            
-            }
 
-        }
-        
+    contadorArray++;
+    numParejas++;
+
+    if (contadorArray == 10) {
+        contadorArray = 0;
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Pintar tablero en html
 document.write('<table>');
