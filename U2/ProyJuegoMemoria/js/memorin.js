@@ -29,21 +29,27 @@ for (let fila = 0; fila < maxFilas; fila++) {
 
 let parejas = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
-let contadorParejas;
+let contadorParejas = 0;
 let posFila;
 let posColumna;
-let posicionArrayParejas = 0;
+let posFila2;
+let posColumna2;
 
 while (contadorParejas < (numCasillas / 2)){
 
     posFila = Math.floor(Math.random() * maxFilas);
     posColumna = Math.floor(Math.random() * maxColumnas);
 
-    if (arrayTablero[posFila][posColumna] != '') {
-        arrayTablero[posFila][posColumna] = 2;
-    }
+    posFila2 = Math.floor(Math.random() * maxFilas);
+    posColumna2 = Math.floor(Math.random() * maxColumnas);
 
-    posicionArrayParejas++;
+    if (arrayTablero[posFila][posColumna] == '') {
+        arrayTablero[posFila][posColumna] = parejas[contadorParejas];
+        arrayTablero[posFila2][posColumna2] = parejas[contadorParejas];
+    }
+    
+
+    contadorParejas++;
 
 }
 
@@ -69,4 +75,15 @@ for (let i = 0; i < maxFilas; i++) {
 
 document.write('</table>');
 
+
+
+// pruebas
+arrayTablero[1][1] = '3';
+
+if (arrayTablero[0][0] == '') {
+    arrayTablero[0][0] = 2;    
+    
+}
+
 document.write(arrayTablero[1][1]);
+document.write(arrayTablero[0][0]);
