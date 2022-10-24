@@ -96,6 +96,7 @@ function colocarParejas(arrayTablero, maxFilas, maxColumnas){
 function pintarTablero(arrayTablero, maxFilas, maxColumnas){
     
     // Pintar tablero en html
+    document.write('<h1>JUEGO DE MEMORIA<br>Carlos Blanco</h1>');
     document.write('<table>');
 
     for (let i = 0; i < maxFilas; i++) {

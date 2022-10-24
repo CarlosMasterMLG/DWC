@@ -6,7 +6,7 @@ table{
 table,tr,td{         
     border: 4px solid black;
     border-collapse:collapse ;
-    background-color: rgb(93, 241, 8);
+    background-color: rgb(94, 255, 0);
 
 }
 td {width: 70px;
@@ -16,4 +16,8 @@ td {width: 70px;
 
 img{
     width: 70px;
+}
+
+h1{
+    text-align: center;
 }
