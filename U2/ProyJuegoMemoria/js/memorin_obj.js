@@ -2,6 +2,7 @@
 let maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
 let maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 
+// Bucle que asegura que insertes un tamaño con casillas pares para meter parejas.
 while((maxFilas * maxColumnas) % 2 != 0){
     alert('ERROR\nEl número de casillas debe permitir parejas');
     maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
@@ -12,9 +13,9 @@ tableroMemoria = crearArrayTablero(maxFilas, maxColumnas);
 tableroMemoria = colocarParejas(tableroMemoria, maxFilas, maxColumnas);
 pintarTablero(tableroMemoria, maxFilas, maxColumnas);
 
+// Crear tablero
 function crearArrayTablero(maxFilas, maxColumnas){
 
-    // Crear tablero
     let arrayTablero = [];
 
     for (let fila = 0; fila < maxFilas; fila++) {
@@ -33,9 +34,9 @@ function crearArrayTablero(maxFilas, maxColumnas){
 
 }
 
+// Colocar parejas de forma equilibrada (que no haya, por ejemplo, 4 parejas de 2 y una del resto).
 function colocarParejas(arrayTablero, maxFilas, maxColumnas){
 
-    // Colocar parejas de forma equilibrada (que no haya, por ejemplo, 4 parejas de 2 y una del resto).
     let parejas = [
         "/stickers/bluetooth.svg",
         "/stickers/discord.svg",
@@ -53,7 +54,7 @@ function colocarParejas(arrayTablero, maxFilas, maxColumnas){
     let posColumna = 0;
     let numParejas = 0;
     let contadorArray = 0;
-
+    
     while (numParejas != (numCasillas/2)) {
 
         posFila = Math.floor(Math.random() * maxFilas);
@@ -93,9 +94,9 @@ function colocarParejas(arrayTablero, maxFilas, maxColumnas){
 
 }
 
+// Pintar tablero en html
 function pintarTablero(arrayTablero, maxFilas, maxColumnas){
     
-    // Pintar tablero en html
     document.write('<h1>JUEGO DE MEMORIA<br>Carlos Blanco</h1>');
     document.write('<table>');
 
