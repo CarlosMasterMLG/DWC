@@ -2,27 +2,24 @@ table{
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
+    
 }
 table,tr,td{         
     border: 4px solid black;
     border-collapse:collapse ;
     background-color: rgb(94, 255, 0);
-
 }
-td {width: 70px;
-    height: 70px;
+td {
+    width: auto;
+    height: 100px;
     text-align: center;
 }
 
 img{
-    width: 70px;
+    width: 100px;
+    height: 100px;
 }
 
 h1{
     text-align: center;
-}
-
-.stop-scrolling {
-    height: 100%;
-    overflow: hidden;
 }
