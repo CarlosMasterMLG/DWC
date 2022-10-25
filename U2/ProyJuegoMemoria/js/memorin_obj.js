@@ -2,8 +2,9 @@
 let maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
 let maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 
-while((maxFilas * maxColumnas) % 2 != 0){
-    alert('ERROR\nEl número de casillas debe permitir parejas');
+while((maxFilas * maxColumnas) % 2 != 0 || maxColumnas * maxFilas < 4){
+
+    alert('ERROR\nEl número de casillas debe permitir hacer mas de una pareja sin que queden sueltas.');
     maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
     maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 }
@@ -37,16 +38,16 @@ function colocarParejas(arrayTablero, maxFilas, maxColumnas){
 
     // Colocar parejas de forma equilibrada (que no haya, por ejemplo, 4 parejas de 2 y una del resto).
     let parejas = [
-        "/stickers/bluetooth.svg",
-        "/stickers/discord.svg",
-        "/stickers/gamepad-solid.svg",
-        "/stickers/java.svg",
-        "/stickers/jedi-order.svg",
-        "/stickers/php.svg",
-        "/stickers/square-github.svg", 
-        "/stickers/twitch.svg", 
-        "/stickers/user-ninja-solid.svg",
-        "/stickers/xbox.svg"
+        "stickers/bluetooth.svg",
+        "stickers/discord.svg",
+        "stickers/gamepad-solid.svg",
+        "stickers/java.svg",
+        "stickers/jedi-order.svg",
+        "stickers/php.svg",
+        "stickers/square-github.svg", 
+        "stickers/twitch.svg", 
+        "stickers/user-ninja-solid.svg",
+        "stickers/xbox.svg"
     ];
     let numCasillas = maxFilas * maxColumnas;
     let posFila = 0;
