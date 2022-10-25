@@ -38,16 +38,16 @@ function colocarParejas(arrayTablero, maxFilas, maxColumnas){
 
     // Colocar parejas de forma equilibrada (que no haya, por ejemplo, 4 parejas de 2 y una del resto).
     let parejas = [
-        "stickers/bluetooth.svg",
-        "stickers/discord.svg",
-        "stickers/gamepad-solid.svg",
-        "stickers/java.svg",
-        "stickers/jedi-order.svg",
-        "stickers/php.svg",
-        "stickers/square-github.svg", 
-        "stickers/twitch.svg", 
-        "stickers/user-ninja-solid.svg",
-        "stickers/xbox.svg"
+        "img/p5_joker.png",
+        "img/p5_skull.jpg",
+        "img/p5_panther.jpg",
+        "img/p5_morgana.png",
+        "img/p5_fox.png",
+        "img/p5_makoto.png",
+        "img/p5_futaba.jpg", 
+        "img/p5_haru.png", 
+        "img/p5_akechi.jpg",
+        "img/p5_yoshizawa.png"
     ];
     let numCasillas = maxFilas * maxColumnas;
     let posFila = 0;
