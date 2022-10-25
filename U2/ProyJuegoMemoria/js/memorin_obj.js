@@ -2,9 +2,9 @@
 let maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
 let maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 
-while((maxFilas * maxColumnas) % 2 != 0 || maxColumnas * maxFilas < 4){
+while((maxFilas * maxColumnas) % 2 != 0 || maxColumnas * maxFilas < 4 || maxFilas > 5){
 
-    alert('ERROR\nEl número de casillas debe permitir hacer mas de una pareja sin que queden sueltas.');
+    alert('ERROR\nEl número de casillas debe permitir hacer mas de una pareja sin que queden sueltas. También debe haber 5 filas como maximo para que quepan en pantalla sin scrollear');
     maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
     maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 }
