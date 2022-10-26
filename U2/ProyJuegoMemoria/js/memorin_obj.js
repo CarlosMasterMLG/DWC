@@ -2,9 +2,9 @@
 let maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
 let maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 
-while((maxFilas * maxColumnas) % 2 != 0 || maxColumnas * maxFilas < 4 || maxFilas > 5){
+while((maxFilas * maxColumnas) % 2 != 0 || maxColumnas * maxFilas < 4 || maxFilas > 5 || maxColumnas > 7){
 
-    alert('ERROR\nEl número de casillas debe permitir hacer mas de una pareja sin que queden sueltas. También debe haber 5 filas como maximo para que quepan en pantalla sin scrollear');
+    alert('ERROR\nEl número de casillas debe permitir hacer mas de una pareja sin que queden sueltas. También debe haber 5 filas y 6 columnas como maximo para que quepan en pantalla sin scrollear y sin redimensionar');
     maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
     maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 }
@@ -36,7 +36,7 @@ function crearArrayTablero(maxFilas, maxColumnas){
 
 function colocarParejas(arrayTablero, maxFilas, maxColumnas){
 
-    // Colocar parejas de forma equilibrada (que no haya, por ejemplo, 4 parejas de 2 y una del resto).
+    // Colocar parejas de forma equilibrada (que no haya, por ejemplo, cuatro parejas de dos y una del resto).
     let parejas = [
         "img/p5_joker.png",
         "img/p5_skull.jpg",
