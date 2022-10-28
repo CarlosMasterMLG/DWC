@@ -1,0 +1,10 @@
+Debe ejecutarlo en el navegador, como minimo funciona en el
+navegador de Firefox y el de Google Chrome.
+
+Al ejecutarlo le pedirá que introduzca el número de filas
+y columnas, a partir de ahi creará el tablero, así que debe tener un par de cosas en cuenta:
+
+    - Debe permitir crear un tablero con número de casillas
+    pares para que no queden elementos sueltos sin pareja.
+    - Para que no haya que scrollear ni se redimensionen las imagenes como mucho tendrá permitido introducir 5 filas
+    y 7 columnas.
