@@ -9,6 +9,7 @@ while((maxFilas * maxColumnas) % 2 != 0 || maxColumnas * maxFilas < 4 || maxFila
     maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 }
 
+// Creamos la clase Tablero
 class Tablero{
     constructor(filas, columnas){
     this.filas = filas;
@@ -17,6 +18,7 @@ class Tablero{
     this.crearTablero();
     }
 
+    // Creamos el tablero
     crearTablero(){
 
         this.arrayTablero = [];
@@ -35,6 +37,7 @@ class Tablero{
 
     }
 
+    // Dibujamos el tablero
     dibujarTablero(){
 
         document.write('<h1>JUEGO DE MEMORIA<br>Carlos Blanco</h1>');
@@ -72,6 +75,7 @@ class Tablero{
     
 }
 
+// Creamos clase JuegoMemoria
 class JuegoMemoria extends Tablero{
     constructor(filas, columnas){
         super(filas, columnas);
@@ -79,6 +83,7 @@ class JuegoMemoria extends Tablero{
         this.colocarParejas();
     }
 
+    // Colocamos las parejas
     colocarParejas(){
 
         let parejas = [
@@ -137,6 +142,7 @@ class JuegoMemoria extends Tablero{
 
 }
 
+// Ejecutamos
 let juegoMemoria1 = new JuegoMemoria(maxFilas, maxColumnas);
 console.log(juegoMemoria1.arrayTablero);
 juegoMemoria1.dibujarTablero();
