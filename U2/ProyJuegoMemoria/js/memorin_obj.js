@@ -9,109 +9,134 @@ while((maxFilas * maxColumnas) % 2 != 0 || maxColumnas * maxFilas < 4 || maxFila
     maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 }
 
-tableroMemoria = crearArrayTablero(maxFilas, maxColumnas);
-tableroMemoria = colocarParejas(tableroMemoria, maxFilas, maxColumnas);
-pintarTablero(tableroMemoria, maxFilas, maxColumnas);
+class Tablero{
+    constructor(filas, columnas){
+    this.filas = filas;
+    this.columnas = columnas;
 
-function crearArrayTablero(maxFilas, maxColumnas){
-
-    // Crear tablero
-    let arrayTablero = [];
-
-    for (let fila = 0; fila < maxFilas; fila++) {
-    
-        arrayTablero[fila] = new Array(maxColumnas);
-
-        for (let columa = 0; columa < maxColumnas; columa++) {
-        
-            arrayTablero[fila][columa] = '';
-        
-        }
-    
+    this.crearTablero();
     }
 
-    return arrayTablero;
+    crearTablero(){
 
-}
+        this.arrayTablero = [];
 
-function colocarParejas(arrayTablero, maxFilas, maxColumnas){
+        for (let fila = 0; fila < this.filas; fila++) {
+    
+            this.arrayTablero[fila] = new Array(this.columnas);
 
-    // Colocar parejas de forma equilibrada (que no haya, por ejemplo, cuatro parejas de dos y una del resto).
-    let parejas = [
-        "img/p5_joker.png",
-        "img/p5_skull.jpg",
-        "img/p5_panther.jpg",
-        "img/p5_morgana.png",
-        "img/p5_fox.png",
-        "img/p5_makoto.png",
-        "img/p5_futaba.jpg", 
-        "img/p5_haru.png", 
-        "img/p5_akechi.jpg",
-        "img/p5_yoshizawa.png"
-    ];
-    let numCasillas = maxFilas * maxColumnas;
-    let posFila = 0;
-    let posColumna = 0;
-    let numParejas = 0;
-    let contadorArray = 0;
-
-    while (numParejas != (numCasillas/2)) {
-
-        posFila = Math.floor(Math.random() * maxFilas);
-        posColumna = Math.floor(Math.random() * maxColumnas);
-
-        while (arrayTablero[posFila][posColumna] != '') {
-
-            posFila = Math.floor(Math.random() * maxFilas);
-            posColumna = Math.floor(Math.random() * maxColumnas);
-
-        }
-
-        arrayTablero[posFila][posColumna] = parejas[contadorArray];
-
-        posFila = Math.floor(Math.random() * maxFilas);
-        posColumna = Math.floor(Math.random() * maxColumnas);
-
-        while (arrayTablero[posFila][posColumna] != '') {
-
-            posFila = Math.floor(Math.random() * maxFilas);
-            posColumna = Math.floor(Math.random() * maxColumnas);
-
-        }
-
-        arrayTablero[posFila][posColumna] = parejas[contadorArray];
-
-        contadorArray++;
-        numParejas++;
-
-        if (contadorArray == 10) {
-        contadorArray = 0;
+            for (let columa = 0; columa < this.columnas; columa++) {
+        
+                this.arrayTablero[fila][columa] = '';
+        
+            }
+    
         }
 
     }
 
-    return arrayTablero;
+    dibujarTablero(){
 
-}
+        document.write('<h1>JUEGO DE MEMORIA<br>Carlos Blanco</h1>');
+        document.write('<table>');
 
-function pintarTablero(arrayTablero, maxFilas, maxColumnas){
+        for (let i = 0; i < this.filas; i++) {
     
-    // Pintar tablero en html
-    document.write('<h1>JUEGO DE MEMORIA<br>Carlos Blanco</h1>');
-    document.write('<table>');
+            document.write('<tr>');
 
-    for (let i = 0; i < maxFilas; i++) {
-    
-        document.write('<tr>');
-
-        for (let j = 0; j < maxColumnas; j++) {
+            for (let j = 0; j < this.columnas; j++) {
         
-            document.write('<td><img src=' + arrayTablero[i][j] + '></td>');
+                document.write('<td><img src=' + this.arrayTablero[i][j] + '></td>');
         
+            }
+            document.write('</tr>');
         }
-        document.write('</tr>');
+
+        document.write('</table>');
+
     }
 
-    document.write('</table>');
+    modificarFilas(nuevasFilas){
+
+        this.filas = nuevasFilas;
+        crearTablero();
+
+    }
+
+    modificarColumnas(nuevasColumnas){
+
+        this.Columnas = nuevasColumnas;
+        crearTablero();
+
+    }
+    
+}
+
+class JuegoMemoria extends Tablero{
+    constructor(filas, columnas){
+        super(filas, columnas);
+
+        this.colocarParejas();
+    }
+
+    colocarParejas(){
+
+        let parejas = [
+            "img/p5_joker.png",
+            "img/p5_skull.jpg",
+            "img/p5_panther.jpg",
+            "img/p5_morgana.png",
+            "img/p5_fox.png",
+            "img/p5_makoto.png",
+            "img/p5_futaba.jpg", 
+            "img/p5_haru.png", 
+            "img/p5_akechi.jpg",
+            "img/p5_yoshizawa.png"
+        ];
+        let numCasillas = this.filas * this.columnas;
+        let posFila = 0;
+        let posColumna = 0;
+        let numParejas = 0;
+        let contadorArray = 0;
+    
+        while (numParejas != (numCasillas/2)) {
+    
+            posFila = Math.floor(Math.random() * this.filas);
+            posColumna = Math.floor(Math.random() * this.columnas);
+    
+            while (this.arrayTablero[posFila][posColumna] != '') {
+    
+                posFila = Math.floor(Math.random() * this.filas);
+                posColumna = Math.floor(Math.random() * this.columnas);
+    
+            }
+    
+            this.arrayTablero[posFila][posColumna] = parejas[contadorArray];
+    
+            posFila = Math.floor(Math.random() * this.filas);
+            posColumna = Math.floor(Math.random() * this.columnas);
+    
+            while (this.arrayTablero[posFila][posColumna] != '') {
+    
+                posFila = Math.floor(Math.random() * this.filas);
+                posColumna = Math.floor(Math.random() * this.columnas);
+    
+            }
+    
+            this.arrayTablero[posFila][posColumna] = parejas[contadorArray];
+    
+            contadorArray++;
+            numParejas++;
+    
+            if (contadorArray == 10) {
+            contadorArray = 0;
+            }
+        }
+
+    }
 
 }
+
+let juegoMemoria1 = new JuegoMemoria(maxFilas, maxColumnas);
+console.log(juegoMemoria1.arrayTablero);
+juegoMemoria1.dibujarTablero();
