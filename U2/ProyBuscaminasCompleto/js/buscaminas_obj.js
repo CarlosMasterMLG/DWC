@@ -20,22 +20,6 @@ class Tablero {
     }
 
     dibujarTablero() {
-        // Creamos el tablero en html
-        /*
-        document.write('<table>');
-
-        for (let i = 0; i < this.filas; i++) {
-            document.write('<tr>');
-
-            for (let j = 0; j < this.columnas; j++) {
-                document.write(`<td>${this.arrayTablero[i][j]}</td>`);
-            }
-
-            document.write('</tr>');
-        }
-        document.write('</table>');
-        */
-
         // Creamos el tablero en HTML desde el DOM
         let tablero = document.createElement("table");
         document.body.appendChild(tablero);
