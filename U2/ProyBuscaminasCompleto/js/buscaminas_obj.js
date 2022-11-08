@@ -21,6 +21,7 @@ class Tablero {
 
     dibujarTablero() {
         // Creamos el tablero en html
+        /*
         document.write('<table>');
 
         for (let i = 0; i < this.filas; i++) {
@@ -33,6 +34,25 @@ class Tablero {
             document.write('</tr>');
         }
         document.write('</table>');
+        */
+
+        // Creamos el tablero en HTML desde el DOM
+        let tablero = document.createElement("table");
+        document.body.appendChild(tablero);
+        for (let i = 0; i < this.filas; i++) {
+            
+            let tr = document.createElement("tr");
+            tablero.appendChild(tr);
+
+            for (let j = 0; j < this.columnas; j++) {
+                
+                let td = document.createElement("td");
+                let contenido = document.createTextNode(`${this.arrayTablero[i][j]}`);
+                td.appendChild(contenido);
+                tr.appendChild(td);
+            }
+
+        }
     }
 
     modificarFilas(nuevasFilas){
@@ -46,9 +66,6 @@ class Tablero {
         this.columnas = nuevasColumnas;
         crearTablero();
     }
-
-
-
 
 }
 /*
@@ -69,7 +86,6 @@ class Buscaminas extends Tablero{
         let contadorMinas = 0;
         let posFila;
         let posColumna;
-    
     
         while (contadorMinas < this.numMinas) {
             posFila = Math.floor(Math.random() * this.filas);
@@ -106,11 +122,11 @@ class Buscaminas extends Tablero{
         }
     }
 
-
-
-
 }
+window.onload=function(){
 
 let buscaminas1 = new Buscaminas(5,5,5);
 console.log(buscaminas1.arrayTablero);
 buscaminas1.dibujarTablero();
+
+}
