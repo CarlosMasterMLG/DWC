@@ -31,7 +31,8 @@ class Tablero {
             for (let j = 0; j < this.columnas; j++) {
                 
                 let td = document.createElement("td");
-                let contenido = document.createTextNode(`${this.arrayTablero[i][j]}`);
+                //let contenido = document.createTextNode(`${this.arrayTablero[i][j]}`);
+                let contenido = document.createTextNode("");
                 td.appendChild(contenido);
                 tr.appendChild(td);
             }
