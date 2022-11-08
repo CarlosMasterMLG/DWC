@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoades", function (event){})
 class Tablero {
     constructor(filas, columnas) {
         this.filas = filas;
@@ -108,6 +107,9 @@ class Buscaminas extends Tablero{
     }
 
 }
+
+document.addEventListener("DOMContentLoades", function (event){})
+
 window.onload=function(){
 
 let buscaminas1 = new Buscaminas(5,5,5);
