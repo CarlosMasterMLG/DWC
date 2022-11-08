@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoades", function (event){})
 class Tablero {
     constructor(filas, columnas) {
         this.filas = filas;
