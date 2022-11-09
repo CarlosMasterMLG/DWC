@@ -1,13 +1,15 @@
 table{
     text-align: center;
     margin: auto;
-    margin: 5%;
 }
 table,tr,td{         
-    border: 2px solid black;
-    border-collapse:collapse ;
-    background-color: white;
-
+    background-color: #BBBBBB;
+    border-left: 2px solid #D3D3D3;
+    border-top: 2px solid #D3D3D3;
+    border-right: 2px solid #A9A9A9;
+    border-bottom: 2px solid #A9A9A9;
+    text-align: center;
+    line-height: var(--size);
 }
 td {width: 50px;
     height: 50px;

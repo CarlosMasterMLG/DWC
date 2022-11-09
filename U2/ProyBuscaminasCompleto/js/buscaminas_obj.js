@@ -19,7 +19,7 @@ class Tablero {
         }
     }
 
-    dibujarTablero() {
+    dibujarTableroDOM() {
         // Creamos el tablero en HTML desde el DOM
         let tablero = document.createElement("table");
         document.body.appendChild(tablero);
@@ -31,12 +31,10 @@ class Tablero {
             for (let j = 0; j < this.columnas; j++) {
                 
                 let td = document.createElement("td");
-                //let contenido = document.createTextNode(`${this.arrayTablero[i][j]}`);
                 let contenido = document.createTextNode("");
                 td.appendChild(contenido);
                 tr.appendChild(td);
             }
-
         }
     }
 
@@ -109,12 +107,9 @@ class Buscaminas extends Tablero{
 
 }
 
-document.addEventListener("DOMContentLoades", function (event){})
-
 window.onload=function(){
 
-let buscaminas1 = new Buscaminas(5,5,5);
-console.log(buscaminas1.arrayTablero);
-buscaminas1.dibujarTablero();
+    let buscaminas1 = new Buscaminas(5,5,5);
+    buscaminas1.dibujarTableroDOM();
 
 }
