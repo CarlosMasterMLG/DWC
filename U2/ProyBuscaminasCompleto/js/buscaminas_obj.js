@@ -19,44 +19,60 @@ class Tablero {
         }
     }
 
-    dibujarTableroDOM() {
-        // Creamos el tablero en HTML desde el DOM
-        let tablero = document.createElement("table");
-        document.body.appendChild(tablero);
+    dibujarTableroHTML() {
+        // Creamos el tablero en html
+        document.write('<table>');
+
         for (let i = 0; i < this.filas; i++) {
-            
-            let tr = document.createElement("tr");
-            tablero.appendChild(tr);
+            document.write('<tr>');
 
             for (let j = 0; j < this.columnas; j++) {
-                
-                let td = document.createElement("td");
-                let contenido = document.createTextNode("");
-                td.appendChild(contenido);
-                tr.appendChild(td);
+                document.write(`<td></td>`);
+            }
+
+            document.write('</tr>');
+        }
+        document.write('</table>');
+    }
+
+    dibujarTableroDOM(){
+        // Creamos el tablero en DOM
+        let tabla = document.createElement('table');
+        let fila;
+        let columna;
+
+        for (let i = 0; i < this.filas; i++) {
+            fila = document.createElement('tr');
+            tabla.appendChild(fila);
+
+            for (let j = 0; j < this.columnas; j++) {
+                columna = document.createElement('td');
+                fila.appendChild(columna);
             }
         }
-    }
 
-    modificarFilas(nuevasFilas){
-        // Modificar el número de filas y crear de nuevo el tablero
+        document.body.appendChild(tabla);
+    }
+    
+
+    modificarFilas(nuevasFilas) {
+        // Modificar el número de filas y volver a crear el tablero con las filas nuevas
         this.filas = nuevasFilas;
-        crearTablero();
+
+        this.crearTablero();
     }
 
-    modificarColumnas(nuevasColumnas){
-        // Modificar el número de columnas y crear de nuevo el tablero
+    modificarColumnas(nuevasColumnas) {
+        // Modificar el número de columnas y volver a crear el tablero con las columnas nuevas
         this.columnas = nuevasColumnas;
-        crearTablero();
+
+        this.crearTablero();
     }
+
 
 }
-/*
-const buscaminas = new Tablero(4, 3);
-buscaminas.dibujarTablero();
-*/
 
-class Buscaminas extends Tablero{
+class Buscaminas extends Tablero {
     constructor(filas, columnas, numMinas) {
         super(filas, columnas);
         this.numMinas = numMinas;
@@ -65,15 +81,16 @@ class Buscaminas extends Tablero{
         this.colocarNumMinas();
     }
 
-    colocarMinas(){
+    colocarMinas() {
         let contadorMinas = 0;
         let posFila;
         let posColumna;
-    
+
+
         while (contadorMinas < this.numMinas) {
             posFila = Math.floor(Math.random() * this.filas);
             posColumna = Math.floor(Math.random() * this.columnas);
-    
+
             if (this.arrayTablero[posFila][posColumna] != 'MINA') {
                 this.arrayTablero[posFila][posColumna] = 'MINA';
                 contadorMinas++;
@@ -81,9 +98,9 @@ class Buscaminas extends Tablero{
         };
     }
 
-    colocarNumMinas(){
+    colocarNumMinas() {
         let numMinasAlrededor;
-    
+
         for (let fila = 0; fila < this.filas; fila++) {
             for (let columna = 0; columna < this.columnas; columna++) {
                 numMinasAlrededor = 0;
@@ -99,17 +116,13 @@ class Buscaminas extends Tablero{
                         }
                         this.arrayTablero[fila][columna] = numMinasAlrededor;
                     }
-        
                 }
             }
         }
     }
-
 }
 
-window.onload=function(){
-
-    let buscaminas1 = new Buscaminas(5,5,5);
+window.onload = function() {
+    let buscaminas1 = new Buscaminas(5, 5, 5);
     buscaminas1.dibujarTableroDOM();
-
 }
