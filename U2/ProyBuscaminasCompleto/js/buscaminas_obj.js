@@ -18,7 +18,7 @@ class Tablero {
             }
         }
     }
-
+/*
     dibujarTableroHTML() {
         // Creamos el tablero en html
         document.write('<table>');
@@ -33,7 +33,7 @@ class Tablero {
             document.write('</tr>');
         }
         document.write('</table>');
-    }
+    }*/
 
     dibujarTableroDOM(){
         // Creamos el tablero en DOM
