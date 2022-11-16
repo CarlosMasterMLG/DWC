@@ -40,6 +40,8 @@ class Tablero {
         let tabla = document.createElement('table');
         let fila;
         let columna;
+        
+        
 
         for (let i = 0; i < this.filas; i++) {
             fila = document.createElement('tr');
@@ -47,7 +49,15 @@ class Tablero {
 
             for (let j = 0; j < this.columnas; j++) {
                 columna = document.createElement('td');
+
+                columna.setAttribute("id", `f${i}, c${j}`);
+                columna.dataset.columna=j;
+                fila.dataset.fila=i;
+                //columna.addEventListener(MouseEvent, addEventListener[useCapture]);
+
                 fila.appendChild(columna);
+
+
             }
         }
 
