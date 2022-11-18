@@ -37,11 +37,11 @@ class Tablero {
 
 
     despejar(){
-        alert('Has despejado');
+        alert('Has despejado la casilla');
     }
 
     marcar(){
-        alert('Has marcado');
+        alert('Has marcado la casilla');
     }
 
     dibujarTableroDOM(){
