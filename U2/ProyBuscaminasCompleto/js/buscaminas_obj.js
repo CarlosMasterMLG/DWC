@@ -35,13 +35,20 @@ class Tablero {
         document.write('</table>');
     }*/
 
+
+    despejar(){
+        alert('Has despejado');
+    }
+
+    marcar(){
+        alert('Has marcado');
+    }
+
     dibujarTableroDOM(){
         // Creamos el tablero en DOM
         let tabla = document.createElement('table');
         let fila;
         let columna;
-        
-        
 
         for (let i = 0; i < this.filas; i++) {
             fila = document.createElement('tr');
@@ -53,17 +60,16 @@ class Tablero {
                 columna.setAttribute("id", `f${i}, c${j}`);
                 columna.dataset.columna=j;
                 fila.dataset.fila=i;
-                //columna.addEventListener(MouseEvent, addEventListener[useCapture]);
 
                 fila.appendChild(columna);
 
-
+                columna.addEventListener('click',this.despejar);
+                columna.addEventListener('contextmenu',this.marcar);
             }
         }
 
         document.body.appendChild(tabla);
     }
-    
 
     modificarFilas(nuevasFilas) {
         // Modificar el número de filas y volver a crear el tablero con las filas nuevas
