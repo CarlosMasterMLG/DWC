@@ -37,11 +37,29 @@ class Tablero {
 
 
     despejar(){
-        alert('Has despejado la casilla');
+        let columna = this.dataset.columna;
+        let fila = this.dataset.fila;
+        alert(`Has despejado la casilla (${fila}, ${columna})`);
     }
 
     marcar(){
-        alert('Has marcado la casilla');
+        document.oncontextmenu = function(){return false}
+
+
+        switch (this.getAttribute("style")){
+            case "background-color:#BBBBBB;":
+                this.setAttribute("style","background-image:url('./flag.svg');");
+                break;
+            case "background-image:url('./flag.svg');":
+                this.setAttribute("style","background-image:url('./question.svg');");
+                break;
+            default: 
+                this.setAttribute("style","background-color:#BBBBBB;");
+                break;
+        }
+        
+
+
     }
 
     dibujarTableroDOM(){
@@ -57,11 +75,13 @@ class Tablero {
             for (let j = 0; j < this.columnas; j++) {
                 columna = document.createElement('td');
 
-                columna.setAttribute("id", `f${i}, c${j}`);
-                columna.dataset.columna=j;
-                fila.dataset.fila=i;
-
+                columna.setAttribute("id", `f${i}_c${j}`);
                 fila.appendChild(columna);
+                
+                columna.dataset.columna=j;
+                columna.dataset.fila=i;
+
+                columna.setAttribute("style","background-color:#BBBBBB;");
 
                 columna.addEventListener('click',this.despejar);
                 columna.addEventListener('contextmenu',this.marcar);
