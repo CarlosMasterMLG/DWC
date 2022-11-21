@@ -48,10 +48,10 @@ class Tablero {
 
         switch (this.getAttribute("style")){
             case "background-color:#BBBBBB;":
-                this.setAttribute("style","background-image:url('./flag.svg');");
+                this.setAttribute("style","background-image:url('./flag.svg');background-repeat: no-repeat;background-size: cover;");
                 break;
-            case "background-image:url('./flag.svg');":
-                this.setAttribute("style","background-image:url('./question.svg');");
+            case "background-image:url('./flag.svg');background-repeat: no-repeat;background-size: cover;":
+                this.setAttribute("style","background-image:url('./question.svg');background-repeat: no-repeat;background-size: cover;");
                 break;
             default: 
                 this.setAttribute("style","background-color:#BBBBBB;");
