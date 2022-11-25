@@ -34,7 +34,32 @@ class Tablero {
         }
         document.write('</table>');
     }
+
+    dibujarTableroDOM(){
+        // Creamos el tablero en DOM
+        let tabla = document.createElement('table');
+        let fila;
+        let columna;
+
+        for (let i = 0; i < this.filas; i++) {
+            fila = document.createElement('tr');
+            tabla.appendChild(fila);
+
+            for (let j = 0; j < this.columnas; j++) {
+                columna = document.createElement('td');
+                columna.id = `f${i}_c${j}`;
+                columna.dataset.fila = i;
+                columna.dataset.columna = j;
+                fila.appendChild(columna);
+            }
+        }
+
+        document.body.appendChild(tabla);
+    }
+
     
+    
+
     modificarFilas(nuevasFilas) {
         // Modificar el número de filas y volver a crear el tablero con las filas nuevas
         this.filas = nuevasFilas;
@@ -48,6 +73,7 @@ class Tablero {
 
         this.crearTablero();
     }
+
 
 }
 
@@ -64,6 +90,7 @@ class Buscaminas extends Tablero {
         let contadorMinas = 0;
         let posFila;
         let posColumna;
+
 
         while (contadorMinas < this.numMinas) {
             posFila = Math.floor(Math.random() * this.filas);
@@ -100,62 +127,52 @@ class Buscaminas extends Tablero {
     }
 
     dibujarTableroDOM(){
-        // Creamos el tablero en DOM
-        let tabla = document.createElement('table');
-        let fila;
-        let columna;
+        super.dibujarTableroDOM();
+
+        let celda;
 
         for (let i = 0; i < this.filas; i++) {
-            fila = document.createElement('tr');
-            tabla.appendChild(fila);
+            for (let j = 0; j < this.columnas; j++){
+                celda = document.getElementById(`f${i}_c${j}`);
 
-            for (let j = 0; j < this.columnas; j++) {
-                columna = document.createElement('td');
-                columna.id = `f${i}_c${j}`;
-                columna.dataset.fila = i;
-                columna.dataset.columna = j;
-                fila.appendChild(columna);
-
-                columna.addEventListener('click', this.despejar);
-                columna.addEventListener('contextmenu', this.marcar);
+                celda.addEventListener('click', this.despejar);
+                celda.addEventListener('contextmenu', this.marcar);
             }
         }
-
-        document.body.appendChild(tabla);
     }
 
     despejar() {
         let columna = this.dataset.columna;
         let fila = this.dataset.fila;
         //alert(`Despejar celda (${fila}, ${columna})`);
+        // ${this.arrayTablero[i][j]}
+        // Buscaminas.numMinasAlrededor
+        // this.get(`f${i}_c${j}`)
+        // arrayTablero[columna][fila]
+        //this.innerHTML = this.getElementsByClassName(1);
 
-        //this.classAtribute=`${fila}, ${columna}`;
+        this.innerHTML = Buscaminas.numMinasAlrededor();
 
-        //this.innerHTML=1;
-
-        if (this.arrayTablero[this.fila][this.columna] != 'MINA') {
-            //this.innerHTML=`${fila}, ${columna}`;
-            alert(`Despejar celda (${fila}, ${columna})`);
-        }
-    }
-
-    marcar() {
-        document.oncontextmenu = function(){return false}
         
-         switch (this.className) {
-            case "":
-                this.className = "bandera";
-                break;
-            case "bandera":
-                this.className = "interrogante";
-                break;
-            default:
-                this.className = "";
-                break;
-         }
-            
+        
     }
+
+    marcar() {         
+        document.oncontextmenu = function(){return false}                   
+        switch (this.className) {             
+            case "":                 
+                this.className = "bandera";                 
+                break;             
+            case "bandera":                 
+                this.className = "interrogante";                 
+                break;             
+            default:                 
+                this.className = "";                 
+                break;          
+        }                  
+    } 
 }
+
 
 window.onload = function() {
     let buscaminas1 = new Buscaminas(5, 5, 5);
