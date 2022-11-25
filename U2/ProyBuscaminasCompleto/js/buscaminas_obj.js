@@ -126,55 +126,58 @@ class Buscaminas extends Tablero {
         }
     }
 
-    dibujarTableroDOM(){
-        super.dibujarTableroDOM();
-
-        let celda;
-
-        for (let i = 0; i < this.filas; i++) {
-            for (let j = 0; j < this.columnas; j++){
-                celda = document.getElementById(`f${i}_c${j}`);
-
-                celda.addEventListener('click', this.despejar);
-                celda.addEventListener('contextmenu', this.marcar);
-            }
-        }
-    }
-
-    despejar() {
-        let columna = this.dataset.columna;
-        let fila = this.dataset.fila;
-        //alert(`Despejar celda (${fila}, ${columna})`);
-        // ${this.arrayTablero[i][j]}
-        // Buscaminas.numMinasAlrededor
-        // this.get(`f${i}_c${j}`)
-        // arrayTablero[columna][fila]
-        //this.innerHTML = this.getElementsByClassName(1);
-
-        this.innerHTML = Buscaminas.numMinasAlrededor();
-
-        
-        
-    }
-
-    marcar() {         
-        document.oncontextmenu = function(){return false}                   
-        switch (this.className) {             
-            case "":                 
-                this.className = "bandera";                 
-                break;             
-            case "bandera":                 
-                this.className = "interrogante";                 
-                break;             
-            default:                 
-                this.className = "";                 
-                break;          
-        }                  
-    } 
+     
 }
 
+function ponerListeners(){
+
+    let celda;
+
+    for (let i = 0; i < this.filas; i++) {
+        for (let j = 0; j < this.columnas; j++){
+            celda = document.getElementById(`f${i}_c${j}`);
+
+            celda.addEventListener('click', this.despejar);
+            celda.addEventListener('contextmenu', this.marcar);
+        }
+    }
+}
+
+function despejar() {
+    let columna = this.dataset.columna;
+    let fila = this.dataset.fila;
+    //alert(`Despejar celda (${fila}, ${columna})`);
+    // ${this.arrayTablero[i][j]}
+    // Buscaminas.numMinasAlrededor
+    // this.get(`f${i}_c${j}`)
+    // arrayTablero[columna][fila]
+    //this.innerHTML = this.getElementsByClassName(1);
+
+    let numMinasAlrededor = Buscaminas.numMinasAlrededor;
+
+    this.innerHTML = numMinasAlrededor;
+
+    
+    
+}
+
+function marcar() {         
+    document.oncontextmenu = function(){return false}                   
+    switch (this.className) {             
+        case "":                 
+            this.className = "bandera";                 
+            break;             
+        case "bandera":                 
+            this.className = "interrogante";                 
+            break;             
+        default:                 
+            this.className = "";                 
+            break;          
+    }
+}
 
 window.onload = function() {
-    let buscaminas1 = new Buscaminas(5, 5, 5);
+    var buscaminas1 = new Buscaminas(5, 5, 5);
     buscaminas1.dibujarTableroDOM();
+    buscaminas1.ponerListeners();
 }
