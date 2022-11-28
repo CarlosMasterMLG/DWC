@@ -146,24 +146,40 @@ class Buscaminas extends Tablero {
         let celda = evento.currentTarget;
         let fila = celda.dataset.fila;
         let columna = celda.dataset.columna;
+
+        
+        //celda.innerHTML = this.arrayTablero[fila][columna];
+
+
+        if (this.arrayTablero[fila][columna]=='MINA') {
+
+            celda.className = "bomba";
+            
+        } else if (this.arrayTablero[fila][columna]!=0) {
+            
+            celda.innerHTML = this.arrayTablero[fila][columna];
+
+        }
+
+        
+
         
     };
 
     marcar(elEvento) {
         let evento = elEvento || window.event;
-        document.oncontextmenu = function(){return false}                   
-    switch (this.className) {             
-        case "":                 
-            this.className = "bandera";                 
-            break;             
-        case "bandera":                 
-            this.className = "interrogante";                 
-            break;             
-        default:                 
-            this.className = "";                 
-            break;          
-    }
-            
+        document.oncontextmenu = function(){return false}
+        switch (celda.className) {
+            case "":
+                celda.className = "bandera";
+                break;
+            case "bandera":
+                celda.className = "interrogante";
+                break;
+            default:
+                celda.className = "";
+                break;
+        }
     }
 }
 
