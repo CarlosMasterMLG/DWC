@@ -126,43 +126,32 @@ class Buscaminas extends Tablero {
         }
     }
 
-     
-}
+    dibujarTableroDOM(){
+        super.dibujarTableroDOM();
 
-function ponerListeners(){
+        let celda;
 
-    let celda;
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++){
+                celda = document.getElementById(`f${i}_c${j}`);
 
-    for (let i = 0; i < this.filas; i++) {
-        for (let j = 0; j < this.columnas; j++){
-            celda = document.getElementById(`f${i}_c${j}`);
-
-            celda.addEventListener('click', this.despejar);
-            celda.addEventListener('contextmenu', this.marcar);
+                celda.addEventListener('click', this.despejar.bind(this));
+                celda.addEventListener('contextmenu', this.marcar.bind(this));
+            }
         }
     }
-}
 
-function despejar() {
-    let columna = this.dataset.columna;
-    let fila = this.dataset.fila;
-    //alert(`Despejar celda (${fila}, ${columna})`);
-    // ${this.arrayTablero[i][j]}
-    // Buscaminas.numMinasAlrededor
-    // this.get(`f${i}_c${j}`)
-    // arrayTablero[columna][fila]
-    //this.innerHTML = this.getElementsByClassName(1);
+    despejar(elEvento) {
+        let evento = elEvento || window.event;
+        let celda = evento.currentTarget;
+        let fila = celda.dataset.fila;
+        let columna = celda.dataset.columna;
+        
+    };
 
-    let numMinasAlrededor = Buscaminas.numMinasAlrededor;
-
-    this.innerHTML = numMinasAlrededor;
-
-    
-    
-}
-
-function marcar() {         
-    document.oncontextmenu = function(){return false}                   
+    marcar(elEvento) {
+        let evento = elEvento || window.event;
+        document.oncontextmenu = function(){return false}                   
     switch (this.className) {             
         case "":                 
             this.className = "bandera";                 
@@ -174,10 +163,11 @@ function marcar() {
             this.className = "";                 
             break;          
     }
+            
+    }
 }
 
 window.onload = function() {
-    var buscaminas1 = new Buscaminas(5, 5, 5);
+    let buscaminas1 = new Buscaminas(5, 5, 5);
     buscaminas1.dibujarTableroDOM();
-    buscaminas1.ponerListeners();
 }
