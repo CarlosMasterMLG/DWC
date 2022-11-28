@@ -159,11 +159,23 @@ class Buscaminas extends Tablero {
             
             celda.innerHTML = this.arrayTablero[fila][columna];
 
+        } else if (this.arrayTablero[fila][columna]==0) {
+            
+            
+
         }
 
-        
 
-        
+
+
+
+
+
+
+
+
+
+
     };
 
     marcar(elEvento) {
