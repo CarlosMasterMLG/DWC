@@ -21,14 +21,14 @@ td {width: 50px;
 
 .bandera{
     background-image:url('../img/flag.svg');
-    background-size: 100%;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .interrogante{
     background-image:url('../img/question.svg');
-    background-size: 100%;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
 }

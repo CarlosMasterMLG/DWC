@@ -180,6 +180,8 @@ class Buscaminas extends Tablero {
 
     marcar(elEvento) {
         let evento = elEvento || window.event;
+        let celda=evento.currentTarget;
+        
         document.oncontextmenu = function(){return false}
         switch (celda.className) {
             case "":
