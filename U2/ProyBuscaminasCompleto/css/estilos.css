@@ -35,6 +35,7 @@ td {width: 50px;
 
 .bomba{
     background-image:url('../img/bomba.png');
+    background-color: red;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
