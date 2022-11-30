@@ -153,21 +153,42 @@ class Buscaminas extends Tablero {
         let esNumero = !esBomba && valorCelda !=0;
         let esBandera = celda.className == "bandera";
         
-        
+        let arrayFilas;
+        let arrayColumnas;
+
 
         if (esNumero) {
 
-                celda.innerHTML = this.arrayTablero[fila][columna];
-                celda.removeEventListener('click', this.despejar.bind(this));
-                celda.removeEventListener('contextmenu', this.marcar.bind(this));
+            celda.innerHTML = this.arrayTablero[fila][columna];
+            celda.removeEventListener('click', this.despejar.bind(this));
+            celda.removeEventListener('contextmenu', this.marcar.bind(this));
 
-            } else if (esBomba) {
+        } else if (esBomba) {
 
-                celda.className = "bomba";
+            celda.className = "bomba";
+            arrayFilas = celda.parentNode.parentNode.childNodes;
 
-                celda.parentNode.parentNode;
-                
+            for (let tr of arrayFilas){
+
+                arrayColumnas = tr.childNodes;
+
+                for (let td of arrayColumnas){
+
+                    fila = td.dataset.fila; 
+                    columna = td.dataset.columna; 
+
+                    if (celda.className = "bandera" && !esBomba) {
+
+                        td.style.backgroundColor = 'red';
+                        
+                    }
+
+                }
+
             }
+
+                
+        }
         
         
         
