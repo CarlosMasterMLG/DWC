@@ -219,6 +219,6 @@ class Buscaminas extends Tablero {
 }
 
 window.onload = function() {
-    let buscaminas1 = new Buscaminas(5, 5, 5);
+    let buscaminas1 = new Buscaminas(8, 8, 10);
     buscaminas1.dibujarTableroDOM();
 }
