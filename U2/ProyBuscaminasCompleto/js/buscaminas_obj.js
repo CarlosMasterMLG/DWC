@@ -146,52 +146,52 @@ class Buscaminas extends Tablero {
         let celda = evento.currentTarget;
         let fila = celda.dataset.fila;
         let columna = celda.dataset.columna;
-
-        let valorCelda = this.arrayTablero[fila][columna];
-        
-        let esBomba = valorCelda =='MINA';
-        let esNumero = !esBomba && valorCelda !=0;
         let esBandera = celda.className == "bandera";
         
         let arrayFilas;
         let arrayColumnas;
 
+        let valorCelda = this.arrayTablero[fila][columna];
+        let esNumero = (valorCelda != 'MINA' && valorCelda != 0);
+        let esBomba = (valorCelda == 'MINA');
+        let bombaSeleccionadaMal;
+
 
         if (esNumero) {
-
-            celda.innerHTML = this.arrayTablero[fila][columna];
+            celda.innerHTML = valorCelda;
             celda.removeEventListener('click', this.despejar.bind(this));
             celda.removeEventListener('contextmenu', this.marcar.bind(this));
-
         } else if (esBomba) {
-
-            celda.className = "bomba";
+            
             arrayFilas = celda.parentNode.parentNode.childNodes;
-
-            for (let tr of arrayFilas){
-
+            for (let tr of arrayFilas) {
                 arrayColumnas = tr.childNodes;
-
                 for (let td of arrayColumnas){
+                    td.removeEventListener('click', this.despejar.bind(this));
+                    td.removeEventListener('contextmenu', this.marcar.bind(this));
 
-                    fila = td.dataset.fila; 
-                    columna = td.dataset.columna; 
-
-                    if (celda.className = "bandera" && !esBomba) {
-
-                        td.style.backgroundColor = 'red';
-                        
+                    fila = td.dataset.fila;
+                    columna = td.dataset.columna;
+                    valorCelda = this.arrayTablero[fila][columna]
+                    if (td.lastChild != null){
+                        bombaSeleccionadaMal = (esBandera && valorCelda != 'MINA');
+                    
+                        if (bombaSeleccionadaMal){
+                            td.lastChild.src = "";
+                            td.style.backgroundColor = 'red';
+                            td.innerHTML = valorCelda;
+                        } else if (valorCelda == 'MINA') {
+                            td.innerHTML = valorCelda;
+                        }
+                    } else if (valorCelda == 'MINA') {
+                        celda.className = "bomba";
                     }
-
                 }
-
             }
-
-                
+            alert(`¡HAS PERDIDO!`);
+        
+        
         }
-        
-        
-        
 
 
 
