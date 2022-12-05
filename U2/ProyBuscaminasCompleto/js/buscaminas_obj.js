@@ -156,12 +156,30 @@ class Buscaminas extends Tablero {
         let esBomba = (valorCelda == 'MINA');
         let bombaSeleccionadaMal;
 
+        if (valorCelda == 0) {
+
+            for (let fila = 0; fila < this.filas; fila++) {
+                for (let columna = 0; columna < this.columnas; columna++) {
+                    
+                    if (valorCelda == 0) {
+                        celda.innerHTML = valorCelda;
+                    } else if (valorCelda != 0) {
+                        celda.innerHTML = valorCelda;
+                        break;
+                    }
+                    
+                }
+            }
+        }
 
         if (esNumero) {
             celda.innerHTML = valorCelda;
             celda.removeEventListener('click', this.despejar.bind(this));
             celda.removeEventListener('contextmenu', this.marcar.bind(this));
         } else if (esBomba) {
+
+            
+            
             
             arrayFilas = celda.parentNode.parentNode.childNodes;
             for (let tr of arrayFilas) {
@@ -174,14 +192,12 @@ class Buscaminas extends Tablero {
                     columna = td.dataset.columna;
                     valorCelda = this.arrayTablero[fila][columna]
                     if (td.lastChild != null){
-                        bombaSeleccionadaMal = (esBandera && valorCelda != 'MINA');
                     
-                        if (bombaSeleccionadaMal){
-                            td.lastChild.src = "";
+                        if (esBandera && !esBomba){
                             td.style.backgroundColor = 'red';
                             td.innerHTML = valorCelda;
                         } else if (valorCelda == 'MINA') {
-                            td.innerHTML = valorCelda;
+                            celda.className = "bomba";
                         }
                     } else if (valorCelda == 'MINA') {
                         celda.className = "bomba";
@@ -219,6 +235,6 @@ class Buscaminas extends Tablero {
 }
 
 window.onload = function() {
-    let buscaminas1 = new Buscaminas(8, 8, 10);
+    let buscaminas1 = new Buscaminas(5, 5, 5);
     buscaminas1.dibujarTableroDOM();
 }
