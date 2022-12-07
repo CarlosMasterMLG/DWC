@@ -158,18 +158,9 @@ class Buscaminas extends Tablero {
 
         if (valorCelda == 0) {
 
-            for (let fila = 0; fila < this.filas; fila++) {
-                for (let columna = 0; columna < this.columnas; columna++) {
-                    
-                    if (valorCelda == 0) {
-                        celda.innerHTML = valorCelda;
-                    } else if (valorCelda != 0) {
-                        celda.innerHTML = valorCelda;
-                        break;
-                    }
-                    
-                }
-            }
+            celda.innerHTML = valorCelda;
+            this.despejar(fila -1, columna+1);
+
         }
 
         if (esNumero) {
