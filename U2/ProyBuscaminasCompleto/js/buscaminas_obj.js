@@ -153,7 +153,7 @@ class Buscaminas extends Tablero {
 
         let valorCelda = this.arrayTablero[fila][columna];
         let esNumero = (valorCelda != 'MINA' && valorCelda != 0);
-        let esBomba = (valorCelda == 'MINA');
+        let esBomba = valorCelda == 'MINA';
         let bombaSeleccionadaMal;
 
         if (valorCelda == 0) {
@@ -168,9 +168,6 @@ class Buscaminas extends Tablero {
             celda.removeEventListener('click', this.despejar.bind(this));
             celda.removeEventListener('contextmenu', this.marcar.bind(this));
         } else if (esBomba) {
-
-            
-            
             
             arrayFilas = celda.parentNode.parentNode.childNodes;
             for (let tr of arrayFilas) {
@@ -187,19 +184,90 @@ class Buscaminas extends Tablero {
                         if (esBandera && !esBomba){
                             td.style.backgroundColor = 'red';
                             td.innerHTML = valorCelda;
-                        } else if (valorCelda == 'MINA') {
-                            celda.className = "bomba";
-                        }
+                        } 
                     } else if (valorCelda == 'MINA') {
                         celda.className = "bomba";
+                    } 
+                    if (valorCelda == 'MINA') {
+                        td.innerHTML = "MINA";
+                        //celda.className = "bomba";
+                    } else if (valorCelda != 'MINA') {
+
+                        if (valorCelda == 0) {
+                            td.innerHTML = '';
+                        } else {
+                            td.innerHTML = valorCelda;
+                        }
+                        
+                    } 
+
+
+
+
+
+
+                    if (valorCelda == 0) {
+                        
+                        for (let i = 0; i < fila +1; i++) {
+                        
+                            for (let j = 0; j < columna+1; j++) {
+                                
+                                this.despejar(this.arrayTablero[fila][columna]);
+                                
+                            }
+                            
+                        }
+
                     }
+                    
+
+
+
+/*
+                    if (valorCelda == 0) {
+
+                        for (let i = fila; i <= fila+1; i++) {
+                            
+                            for (let j = columna; j < columna+1; j++) {
+                                
+                                if (valorCelda == 0) {
+                                    this.despejar();
+                                } else {
+                                    this.despejar();
+                                    break;
+                                }
+                                
+                            }
+                            
+                        }
+
+                        alrededor1 = this.arrayTablero[fila-1][columna-1];
+                        alrededor2 = this.arrayTablero[fila-1][columna];
+                        alrededor3 = this.arrayTablero[fila-1][columna+1];
+                        alrededor4 = this.arrayTablero[fila][columna-1];
+                        alrededor5 = this.arrayTablero[fila][columna+1];
+                        alrededor6 = this.arrayTablero[fila+1][columna-1];
+                        alrededor7 = this.arrayTablero[fila+1][columna];
+                        alrededor8 = this.arrayTablero[fila+1][columna+1];
+
+
+                        innerHTML = valorCelda;
+                        //casilla.innerHTML  = "";
+
+                    }
+                    */
+
+
+
+                    
+
+
                 }
             }
             alert(`¡HAS PERDIDO!`);
         
         
         }
-
 
 
 
