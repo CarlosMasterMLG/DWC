@@ -15,6 +15,10 @@ td {width: 50px;
     text-align: center;
 }
 
+.destapado{
+    background-color: rgb(163, 160, 160);
+}
+
 .vacio{
     background-color: #BBBBBB;
 }

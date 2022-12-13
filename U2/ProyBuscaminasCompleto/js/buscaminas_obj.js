@@ -50,6 +50,7 @@ class Tablero {
                 columna.id = `f${i}_c${j}`;
                 columna.dataset.fila = i;
                 columna.dataset.columna = j;
+                columna.dataset.despejado = false;
                 fila.appendChild(columna);
             }
         }
@@ -144,8 +145,17 @@ class Buscaminas extends Tablero {
     despejar(elEvento) {
         let evento = elEvento || window.event;
         let celda = evento.currentTarget;
+        
+        this.despejarCelda(celda);
+
+    }
+
+    despejarCelda(celda){
+
         let fila = celda.dataset.fila;
         let columna = celda.dataset.columna;
+        let estaDespejado = celda.dataset.despejado = true;
+
         let esBandera = celda.className == "bandera";
         
         let arrayFilas;
@@ -165,6 +175,7 @@ class Buscaminas extends Tablero {
 
         if (esNumero) {
             celda.innerHTML = valorCelda;
+            celda.className = "destapado";
             celda.removeEventListener('click', this.despejar.bind(this));
             celda.removeEventListener('contextmenu', this.marcar.bind(this));
         } else if (esBomba) {
@@ -198,81 +209,31 @@ class Buscaminas extends Tablero {
                         } else {
                             td.innerHTML = valorCelda;
                         }
-                        
-                    } 
-
-
-
-
-
-
-                    if (valorCelda == 0) {
-                        
-                        for (let i = 0; i < fila +1; i++) {
-                        
-                            for (let j = 0; j < columna+1; j++) {
-                                
-                                this.despejar(this.arrayTablero[fila][columna]);
-                                
-                            }
-                            
-                        }
-
                     }
-                    
-
-
-
-/*
-                    if (valorCelda == 0) {
-
-                        for (let i = fila; i <= fila+1; i++) {
-                            
-                            for (let j = columna; j < columna+1; j++) {
-                                
-                                if (valorCelda == 0) {
-                                    this.despejar();
-                                } else {
-                                    this.despejar();
-                                    break;
-                                }
-                                
-                            }
-                            
-                        }
-
-                        alrededor1 = this.arrayTablero[fila-1][columna-1];
-                        alrededor2 = this.arrayTablero[fila-1][columna];
-                        alrededor3 = this.arrayTablero[fila-1][columna+1];
-                        alrededor4 = this.arrayTablero[fila][columna-1];
-                        alrededor5 = this.arrayTablero[fila][columna+1];
-                        alrededor6 = this.arrayTablero[fila+1][columna-1];
-                        alrededor7 = this.arrayTablero[fila+1][columna];
-                        alrededor8 = this.arrayTablero[fila+1][columna+1];
-
-
-                        innerHTML = valorCelda;
-                        //casilla.innerHTML  = "";
-
-                    }
-                    */
-
-
-
-                    
-
-
                 }
             }
             alert(`¡HAS PERDIDO!`);
         
-        
-        }
+        } else if (valorCelda == 0) {
+            celda.innerHTML = "";
+            for (let cFila = fila - 1; cFila <= fila + 1; cFila++) {
+                if (cFila >= 0 && cFila < this.filas) {
+                    for (let cColumna = columna - 1; cColumna <= columna + 1; cColumna++) {
+                        if (cColumna >= 0 && cColumna < this.columnas && !estaDespejado) {
+                            
+                            celdaNueva = document.getElementById(`f${cFila}_c${cColumna}`)
+                            console.log(`f${cFila}_c${cColumna}`);
+                        }
+                    }
+                }
+                this.arrayTablero[fila][columna] = numMinasAlrededor;
+            }
 
-
-
+         }
 
     }
+
+
 
     marcar(elEvento) {
         let evento = elEvento || window.event;
