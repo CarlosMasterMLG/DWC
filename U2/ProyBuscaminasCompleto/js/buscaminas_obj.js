@@ -143,15 +143,47 @@ class Buscaminas extends Tablero {
         }
     }
 
+    ganar(){
+
+        let minasTapadas = 0;
+
+        for (let i = 0; i < this.filas; i++) {
+            
+            for (let j = 0; j < this.columnas; j++) {
+                
+                if (this.arrayTablero[i][j].className == 'bandera' && this.arrayTablero[i][j] == 'MINA') {
+                    minasTapadas = minasTapadas + 1;
+
+                    if (minasTapadas == this.numMinas) {
+                        alert(`¡HAS GANADO!`)
+                    }
+                }
+                
+            }
+            
+        }
+
+        
+
+        /*
+        if (true) {
+            alert(`¡HAS GANADO!`);
+        }
+        */
+    }
+
     despejar(elEvento) {
         let evento = elEvento || window.event;
         let celda = evento.currentTarget;
         
         this.despejarCelda(celda);
 
+        this.ganar();
+
     }
 
     despejarCelda(celda){
+
 
         let fila = parseInt(celda.dataset.fila);
         let columna = parseInt(celda.dataset.columna);
@@ -233,7 +265,6 @@ class Buscaminas extends Tablero {
         let celda=evento.currentTarget;
 
         //let banderasDisponibles = this.numMinas;
-
 
         document.oncontextmenu = function(){return false}
         switch (celda.className) {
