@@ -82,6 +82,7 @@ class Buscaminas extends Tablero {
     constructor(filas, columnas, numMinas) {
         super(filas, columnas);
         this.numMinas = numMinas;
+        this.banderasDisponibles = this.numMinas;
 
         this.colocarMinas();
         this.colocarNumMinas();
@@ -152,84 +153,76 @@ class Buscaminas extends Tablero {
 
     despejarCelda(celda){
 
-        let fila = celda.dataset.fila;
-        let columna = celda.dataset.columna;
-        let estaDespejado = celda.dataset.despejado = true;
+        let fila = parseInt(celda.dataset.fila);
+        let columna = parseInt(celda.dataset.columna);
 
-        let esBandera = celda.className == "bandera";
-        
-        let arrayFilas;
-        let arrayColumnas;
+        // Marcar la celda despejada
+        celda.dataset.despejado = true;
+        celda.style.backgroundColor = "lightgrey";
+        celda.removeEventListener('click', this.despejar);
+        celda.removeEventListener('contextmenu', this.marcar);
 
         let valorCelda = this.arrayTablero[fila][columna];
         let esNumero = (valorCelda != 'MINA' && valorCelda != 0);
-        let esBomba = valorCelda == 'MINA';
+        let esBomba = (valorCelda == 'MINA');
+        let esVacio = (valorCelda == 0);
+        let estaDespejado;
         let bombaSeleccionadaMal;
 
-        if (valorCelda == 0) {
+        let arrayFilas;
+        let arrayColumnas; 
+        let celdaNueva;
 
-            celda.innerHTML = valorCelda;
-            this.despejar(fila -1, columna+1);
-
-        }
+        let esBandera = celda.className == "bandera";
 
         if (esNumero) {
             celda.innerHTML = valorCelda;
-            celda.className = "destapado";
-            celda.removeEventListener('click', this.despejar.bind(this));
-            celda.removeEventListener('contextmenu', this.marcar.bind(this));
+            
         } else if (esBomba) {
             
             arrayFilas = celda.parentNode.parentNode.childNodes;
             for (let tr of arrayFilas) {
                 arrayColumnas = tr.childNodes;
                 for (let td of arrayColumnas){
-                    td.removeEventListener('click', this.despejar.bind(this));
-                    td.removeEventListener('contextmenu', this.marcar.bind(this));
+                    td.removeEventListener('click', this.despejar);
+                    td.removeEventListener('contextmenu', this.marcar);
 
                     fila = td.dataset.fila;
                     columna = td.dataset.columna;
                     valorCelda = this.arrayTablero[fila][columna]
                     if (td.lastChild != null){
+                        bombaSeleccionadaMal = (td.lastChild.src ==  esBandera && valorCelda != 'MINA');
                     
-                        if (esBandera && !esBomba){
+                        if (bombaSeleccionadaMal){
+                            td.lastChild.src = "";
                             td.style.backgroundColor = 'red';
                             td.innerHTML = valorCelda;
-                        } 
-                    } else if (valorCelda == 'MINA') {
-                        celda.className = "bomba";
-                    } 
-                    if (valorCelda == 'MINA') {
-                        td.innerHTML = "MINA";
-                        //celda.className = "bomba";
-                    } else if (valorCelda != 'MINA') {
-
-                        if (valorCelda == 0) {
-                            td.innerHTML = '';
-                        } else {
+                        } else if (valorCelda == 'MINA') {
                             td.innerHTML = valorCelda;
                         }
+                    } else if (valorCelda == 'MINA') {
+                            td.innerHTML = valorCelda;
                     }
                 }
             }
             alert(`¡HAS PERDIDO!`);
-        
-        } else if (valorCelda == 0) {
-            celda.innerHTML = "";
+        }else if (esVacio) {
+
             for (let cFila = fila - 1; cFila <= fila + 1; cFila++) {
                 if (cFila >= 0 && cFila < this.filas) {
                     for (let cColumna = columna - 1; cColumna <= columna + 1; cColumna++) {
-                        if (cColumna >= 0 && cColumna < this.columnas && !estaDespejado) {
-                            
+                        if (cColumna >= 0 && cColumna < this.columnas) {
                             celdaNueva = document.getElementById(`f${cFila}_c${cColumna}`)
-                            console.log(`f${cFila}_c${cColumna}`);
+                            estaDespejado = (celdaNueva.dataset.despejado == 'true');
+                            if (!estaDespejado) {
+                                console.log(`f${cFila}_c${cColumna}`);
+                                this.despejarCelda(celdaNueva);
+                            }
                         }
                     }
                 }
-                this.arrayTablero[fila][columna] = numMinasAlrededor;
             }
-
-         }
+        }
 
     }
 
@@ -239,13 +232,23 @@ class Buscaminas extends Tablero {
         let evento = elEvento || window.event;
         let celda=evento.currentTarget;
 
+        //let banderasDisponibles = this.numMinas;
+
+
         document.oncontextmenu = function(){return false}
         switch (celda.className) {
             case "":
-                celda.className = "bandera";
-                break;
+                if (this.banderasDisponibles > 0) {
+                    this.banderasDisponibles = this.banderasDisponibles - 1;
+                    celda.className = "bandera";
+                    break;
+                } else {
+                    celda.className = "interrogante";
+                    break;
+                }
             case "bandera":
                 celda.className = "interrogante";
+                this.banderasDisponibles = this.banderasDisponibles + 1;
                 break;
             default:
                 celda.className = "";
