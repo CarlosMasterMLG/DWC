@@ -82,7 +82,10 @@ class Buscaminas extends Tablero {
     constructor(filas, columnas, numMinas) {
         super(filas, columnas);
         this.numMinas = numMinas;
+
         this.banderasDisponibles = this.numMinas;
+        this.banderasBienPuestas=0;
+        this.celdasBienDespejadas=0;
 
         this.colocarMinas();
         this.colocarNumMinas();
@@ -143,33 +146,13 @@ class Buscaminas extends Tablero {
         }
     }
 
-    ganar(){
+    ganar() {
+        let banderasBuenas=(this.banderasBienPuestas==this.numMinas);
+        let celdasDespejadas=(this.celdasBienDespejadas==(this.filas*this.columnas)-this.numMinas);
 
-        let minasTapadas = 0;
-
-        for (let i = 0; i < this.filas; i++) {
-            
-            for (let j = 0; j < this.columnas; j++) {
-                
-                if (this.arrayTablero[i][j].className == 'bandera' && this.arrayTablero[i][j] == 'MINA') {
-                    minasTapadas = minasTapadas + 1;
-
-                    if (minasTapadas == this.numMinas) {
-                        alert(`¡HAS GANADO!`)
-                    }
-                }
-                
-            }
-            
+        if(banderasBuenas||celdasDespejadas){
+            setTimeout(function () { alert("¡Has ganado!") }, 500);
         }
-
-        
-
-        /*
-        if (true) {
-            alert(`¡HAS GANADO!`);
-        }
-        */
     }
 
     despejar(elEvento) {
@@ -182,80 +165,102 @@ class Buscaminas extends Tablero {
 
     }
 
-    despejarCelda(celda){
+    despejarCelda(celda) {
+        let fila = celda.dataset.fila;
+        let columna = celda.dataset.columna;
 
-
-        let fila = parseInt(celda.dataset.fila);
-        let columna = parseInt(celda.dataset.columna);
-
-        // Marcar la celda despejada
         celda.dataset.despejado = true;
-        celda.style.backgroundColor = "lightgrey";
-        celda.removeEventListener('click', this.despejar);
-        celda.removeEventListener('contextmenu', this.marcar);
 
-        let valorCelda = this.arrayTablero[fila][columna];
-        let esNumero = (valorCelda != 'MINA' && valorCelda != 0);
-        let esBomba = (valorCelda == 'MINA');
-        let esVacio = (valorCelda == 0);
-        let estaDespejado;
-        let bombaSeleccionadaMal;
+        let contenidoCelda = this.arrayTablero[fila][columna];
+        let esNumero = (contenidoCelda != "MINA" && contenidoCelda != 0);
+        let esMina = (contenidoCelda == "MINA");
+        let esCero = (contenidoCelda == 0);
+        let estaMarcado = (celda.getAttribute("class") == "bandera");
 
         let arrayFilas;
-        let arrayColumnas; 
-        let celdaNueva;
+        let arrayColumnas;
 
-        let esBandera = celda.className == "bandera";
+        celda.setAttribute("class", "destapado");
 
-        if (esNumero) {
-            celda.innerHTML = valorCelda;
-            
-        } else if (esBomba) {
-            
-            arrayFilas = celda.parentNode.parentNode.childNodes;
-            for (let tr of arrayFilas) {
-                arrayColumnas = tr.childNodes;
-                for (let td of arrayColumnas){
-                    td.removeEventListener('click', this.despejar);
-                    td.removeEventListener('contextmenu', this.marcar);
-
-                    fila = td.dataset.fila;
-                    columna = td.dataset.columna;
-                    valorCelda = this.arrayTablero[fila][columna]
-                    if (td.lastChild != null){
-                        bombaSeleccionadaMal = (td.lastChild.src ==  esBandera && valorCelda != 'MINA');
-                    
-                        if (bombaSeleccionadaMal){
-                            td.lastChild.src = "";
-                            td.style.backgroundColor = 'red';
-                            td.innerHTML = valorCelda;
-                        } else if (valorCelda == 'MINA') {
-                            td.innerHTML = valorCelda;
-                        }
-                    } else if (valorCelda == 'MINA') {
-                            td.innerHTML = valorCelda;
-                    }
-                }
+        if (estaMarcado) {
+            celda.setAttribute("class", "bandera");
+        }
+        else if (esNumero) {
+            celda.innerHTML = contenidoCelda;
+            switch (celda.innerHTML) {
+                case "1":
+                    celda.setAttribute("style", "color:rgb(0, 57, 214);");
+                    break;
+                case "2":
+                    celda.setAttribute("style", "color:green;");
+                    break;
+                case "3":
+                    celda.setAttribute("style", "color:red;");
+                    break;
+                case "4":
+                    celda.setAttribute("style", "color:navy;");
+                    break;
+                case "5":
+                    celda.setAttribute("style", "color:darkred")
+                    break;
+                case "6":
+                    celda.setAttribute("style", "color:aqua")
+                    break;
+                case "7":
+                    celda.setAttribute("style", "color:black")
+                    break;
+                case "8":
+                    celda.setAttribute("style", "color:gray");
+                    break;
             }
-            alert(`¡HAS PERDIDO!`);
-        }else if (esVacio) {
+            this.celdasBienDespejadas++;
+            this.ganar();
+        } else if (esCero) {
+            if(celda.getAttribute("class")!="bandera"){
+                celda.innerHTML = "";
+                let fila = parseInt(celda.dataset.fila);
+                let columna = parseInt(celda.dataset.columna);
 
-            for (let cFila = fila - 1; cFila <= fila + 1; cFila++) {
-                if (cFila >= 0 && cFila < this.filas) {
-                    for (let cColumna = columna - 1; cColumna <= columna + 1; cColumna++) {
-                        if (cColumna >= 0 && cColumna < this.columnas) {
-                            celdaNueva = document.getElementById(`f${cFila}_c${cColumna}`)
-                            estaDespejado = (celdaNueva.dataset.despejado == 'true');
-                            if (!estaDespejado) {
-                                console.log(`f${cFila}_c${cColumna}`);
-                                this.despejarCelda(celdaNueva);
+                let estaDestapada = (celda.dataset.despejado == "true");
+                for (let cFila = fila - 1; cFila <= fila + 1; cFila++) {
+                    if (cFila >= 0 && cFila < this.filas) {
+                        for (let cCol = columna - 1; cCol <= columna + 1; cCol++) {
+                            if (cCol >= 0 && cCol < this.columnas) {
+                                let celdaActual = document.getElementById(`f${cFila}_c${cCol}`);
+                                let estaDestapada = (celdaActual.dataset.despejado == "true");
+
+                                if (!estaDestapada) {
+                                    this.despejarCelda(celdaActual);
+                                }
                             }
                         }
                     }
                 }
             }
-        }
+            this.celdasBienDespejadas++;
+            this.ganar();
+        } else if (esMina) {
+            arrayFilas = celda.parentNode.parentNode.childNodes;
+            for (let tr of arrayFilas) {
+                arrayColumnas = tr.childNodes;
+                for (let td of arrayColumnas) {
+                    let filaBomba = td.dataset.fila;
+                    let columnaBomba = td.dataset.columna;
+                    let valorCeldaBomba = this.arrayTablero[filaBomba][columnaBomba];
 
+                    if (td.lastChild != "") {
+                        let banderaMalPuesta = (celda.getAttribute("class") == 'bandera' && contenidoCelda != 'MINA');
+
+                        if(valorCeldaBomba=="MINA"){
+                            td.setAttribute("class","minaRoja")
+                        }else if(valorCeldaBomba!="MINA"&&td.getAttribute("class")=="bandera"){
+                            td.setAttribute("class","error");
+                        }
+                    }
+                }
+            }
+            setTimeout(function () { alert("Has perdido.") }, 500);
+        }
     }
 
 
