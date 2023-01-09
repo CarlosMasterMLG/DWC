@@ -104,7 +104,7 @@ class JuegoMemoria extends Tablero{
         super(filas, columnas);
 
         this.colocarParejas();
-        this.dibujarTableroDOM();
+        // this.dibujarTableroDOM();
     }
 
     // Colocamos las parejas
@@ -185,7 +185,7 @@ class JuegoMemoria extends Tablero{
     despejar(elEvento){
         
         let evento = elEvento || window.event;
-        let celda = evento.currenTarget;
+        let celda = evento.currentTarget;
 
         this.despejarCelda(celda);
 
