@@ -199,11 +199,8 @@ class JuegoMemoria extends Tablero{
         celda.dataset.despejado = true;
         let contenidoCelda = this.arrayTablero[fila][columna];
 
-        // prueba
-        celda.style.backgroundColor = "lightgrey";
-        // fin prueba
 
-        celda.innerHTML = '1';
+        celda.innerHTML = contenidoCelda;
 
     }
 
