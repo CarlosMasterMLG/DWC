@@ -104,6 +104,7 @@ class JuegoMemoria extends Tablero{
         super(filas, columnas);
 
         this.colocarParejas();
+        this.dibujarTableroDOM();
     }
 
     // Colocamos las parejas
@@ -162,6 +163,50 @@ class JuegoMemoria extends Tablero{
         }
 
     }
+
+
+
+
+    dibujarTableroDOM(){
+        super.dibujarTableroDOM();
+
+        let celda;
+
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+
+                celda = document.getElementById(`f${i}_c${j}`);
+
+                celda.addEventListener('click', this.despejar.bind(this));
+            }   
+        }
+    }
+
+    despejar(elEvento){
+        
+        let evento = elEvento || window.event;
+        let celda = evento.currenTarget;
+
+        this.despejarCelda(celda);
+
+    }
+
+    despejarCelda(celda){
+
+        let fila = parseInt(celda.dataset.fila);
+        let columna = parseInt(celda.dataset.columna);
+
+        celda.dataset.despejado = true;
+        let contenidoCelda = this.arrayTablero[fila][columna];
+
+        // prueba
+        celda.style.backgroundColor = "lightgrey";
+        // fin prueba
+
+        celda.innerHTML = '1';
+
+    }
+
 
 }
 
