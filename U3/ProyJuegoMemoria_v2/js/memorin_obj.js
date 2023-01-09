@@ -38,11 +38,34 @@ class Tablero{
     }
 
     // Dibujamos el tablero
-    dibujarTablero(){
+    dibujarTableroDOM(){
 
         document.write('<h1>JUEGO DE MEMORIA<br>Carlos Blanco</h1>');
-        document.write('<table>');
 
+        let tablero = document.createElement('table');
+        let fila;
+        let columna;
+
+        for (let i = 0; i < this.filas; i++) {
+            
+            fila = document.createElement('tr');
+            tablero.appendChild(fila);
+
+            for (let j = 0; j < this.columnas; j++) {
+                
+                columna = document.createElement('td');
+                columna.id = `f${i}_c${j}`;
+                columna.dataset.fila = i;
+                columna.dataset.columna = j;
+                columna.dataset.despejado = false; // celda.dataset.despejado = true; en la función despejarCasilla
+                fila.appendChild(columna);
+
+            }
+            document.body.appendChild(tablero);
+        }
+
+
+        /*
         for (let i = 0; i < this.filas; i++) {
     
             document.write('<tr>');
@@ -56,7 +79,7 @@ class Tablero{
         }
 
         document.write('</table>');
-
+*/
     }
 
     modificarFilas(nuevasFilas){
@@ -145,4 +168,4 @@ class JuegoMemoria extends Tablero{
 // Ejecutamos
 let juegoMemoria1 = new JuegoMemoria(maxFilas, maxColumnas);
 console.log(juegoMemoria1.arrayTablero);
-juegoMemoria1.dibujarTablero();
+juegoMemoria1.dibujarTableroDOM();
