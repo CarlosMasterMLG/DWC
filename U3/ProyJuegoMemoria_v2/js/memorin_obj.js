@@ -197,9 +197,10 @@ class JuegoMemoria extends Tablero{
         let columna = parseInt(celda.dataset.columna);
 
         celda.dataset.despejado = true;
-        celda.style.backgroundColor = 'grey';
-        celda.style.backgroundImage = "url('./contenidoCelda')";
+        //celda.style.backgroundColor = 'grey';
+        
         let contenidoCelda = this.arrayTablero[fila][columna];
+        celda.style.backgroundImage = 'url(../'+contenidoCelda+')';
 
         celda.innerHTML = contenidoCelda;
 
