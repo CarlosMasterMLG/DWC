@@ -201,6 +201,10 @@ class JuegoMemoria extends Tablero{
         
         let contenidoCelda = this.arrayTablero[fila][columna];
         celda.style.backgroundImage = 'url(../'+contenidoCelda+')';
+        //celda.style.width = 'auto';
+        //celda.style.height = 'auto';
+
+    
 
         celda.innerHTML = contenidoCelda;
 
