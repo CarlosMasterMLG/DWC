@@ -218,7 +218,7 @@ class JuegoMemoria extends Tablero{
         if (this.numDespejados == 2) {
             
             if (this.primerDespejado == contenidoCelda) {
-                alert("hola");
+                alert("Has desbloqueado una pareja");
             }
 
 
