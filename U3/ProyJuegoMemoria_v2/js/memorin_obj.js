@@ -103,6 +103,8 @@ class JuegoMemoria extends Tablero{
     constructor(filas, columnas){
         super(filas, columnas);
 
+        this.numDespejados = 0;
+        this.primerDespejado = "";
         this.colocarParejas();
         // this.dibujarTableroDOM();
     }
@@ -202,6 +204,27 @@ class JuegoMemoria extends Tablero{
         let contenidoCelda = this.arrayTablero[fila][columna];
         celda.style.backgroundImage = 'url(../'+contenidoCelda+')';
         celda.style.backgroundSize = "302px";
+
+        
+
+        this.numDespejados = this.numDespejados + 1;
+
+        if (this.numDespejados == 1) {
+            
+            this.primerDespejado = contenidoCelda;
+
+        }
+
+        if (this.numDespejados == 2) {
+            
+            if (this.primerDespejado == contenidoCelda) {
+                alert("hola");
+            }
+
+
+
+            this.numDespejados = 0;
+        }
 
     }
 
