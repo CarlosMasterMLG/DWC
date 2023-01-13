@@ -105,6 +105,7 @@ class JuegoMemoria extends Tablero{
 
         this.numDespejados = 0;
         this.primerDespejado = "";
+        this.posPrimerDespejado = "";
         this.colocarParejas();
         // this.dibujarTableroDOM();
     }
@@ -212,13 +213,25 @@ class JuegoMemoria extends Tablero{
         if (this.numDespejados == 1) {
             
             this.primerDespejado = contenidoCelda;
+            this.posPrimerDespejado = celda;
 
         }
 
         if (this.numDespejados == 2) {
             
             if (this.primerDespejado == contenidoCelda) {
-                alert("Has desbloqueado una pareja");
+                
+                //alert("Has desbloqueado una pareja");
+                
+                //celda.removeEventListener('click', this.despejarCelda);
+                //this.posPrimerDespejado.removeEventListener('click', this.despejarCelda);
+                
+
+            } else {
+                
+                this.posPrimerDespejado.style.background = "white";
+                celda.style.background  = "white";
+                //alert('Prueba otra vez');
             }
 
 
