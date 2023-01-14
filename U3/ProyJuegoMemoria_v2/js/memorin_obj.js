@@ -225,7 +225,7 @@ class JuegoMemoria extends Tablero{
                 
                 //celda.removeEventListener('click', this.despejarCelda);
                 //this.posPrimerDespejado.removeEventListener('click', this.despejarCelda);
-                
+                //Este comentario es una prueba del GIT
 
             } else {
                 
