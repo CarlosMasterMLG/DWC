@@ -8,6 +8,11 @@ while((maxFilas * maxColumnas) % 2 != 0 || maxColumnas * maxFilas < 4 || maxFila
     maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
     maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 }
+/*
+window.onload = function() {
+
+    
+}*/
 
 // Creamos la clase Tablero
 class Tablero{
@@ -57,34 +62,15 @@ class Tablero{
                 columna.id = `f${i}_c${j}`;
                 columna.dataset.fila = i;
                 columna.dataset.columna = j;
-                columna.dataset.despejado = false; // celda.dataset.despejado = true; en la función despejarCasilla
+                columna.dataset.despejado = false;
                 fila.appendChild(columna);
 
             }
             document.body.appendChild(tablero);
         }
 
-        const boton = document.createElement('button');
-        boton.type = 'button';
-        boton.innerHTML = 'Reiniciar Juego';
-        document.body.appendChild(boton);
-
-
-        /*
-        for (let i = 0; i < this.filas; i++) {
-    
-            document.write('<tr>');
-
-            for (let j = 0; j < this.columnas; j++) {
         
-                document.write('<td><img src=' + this.arrayTablero[i][j] + '></td>');
-        
-            }
-            document.write('</tr>');
-        }
 
-        document.write('</table>');
-*/
     }
 
     modificarFilas(nuevasFilas){
@@ -189,6 +175,28 @@ class JuegoMemoria extends Tablero{
 
             }   
         }
+
+        const boton = document.createElement('button');
+        boton.type = 'button';
+        /*boton.setAttribute('id', 'boton');*/
+        boton.onclick = function() {
+            let seguro = confirm('¿Estas seguro?');
+
+            if (seguro) {
+                
+                location.reload();
+
+                /*this.JuegoMemoria.colocarParejas();
+                new JuegoMemoria(maxFilas, maxColumnas);*/
+                /*
+                let juegoMemoria1 = new JuegoMemoria(maxFilas, maxColumnas);
+                console.log(juegoMemoria1.arrayTablero);
+                juegoMemoria1.dibujarTableroDOM();*/
+                
+            }
+        }
+        boton.innerHTML = 'Reiniciar Juego';
+        document.body.appendChild(boton);
     }
 
     despejar(elEvento){
@@ -226,17 +234,20 @@ class JuegoMemoria extends Tablero{
             if (this.primerDespejado == contenidoCelda) {
                 
                 setTimeout(() => {
-                    this.posPrimerDespejado.style.background = "rgb(253, 37, 37)";
-                    celda.style.background  = "rgb(253, 37, 37)";
+                    /*this.posPrimerDespejado.style.background = "rgb(3, 139, 230)";
+                    celda.style.background  = "rgb(3, 139, 230)";*/
+                    this.posPrimerDespejado.style.display = "none";
+                    celda.style.display = "none";/*PREGUNTAR A BELEN SI ASI ESTA BIEN, PORQUE
+                                                    VA CAMBIANDO LA ESTRUCTURA DE LA TABLA*/
                 }, "500");
 
             } else {
                 setTimeout(() => {
-                    this.posPrimerDespejado.style.backgroundImage = 'url(/img/p5_reversoCarta.png)';
+                    this.posPrimerDespejado.style.backgroundImage = 'url(/img/p3_reversoCarta.png)';
                     this.posPrimerDespejado.style.backgroundSize = '320px';
                     this.posPrimerDespejado.style.backgroundPosition = '50% 50%';
 
-                    celda.style.backgroundImage = 'url(/img/p5_reversoCarta.png)';
+                    celda.style.backgroundImage = 'url(/img/p3_reversoCarta.png)';
                     celda.style.backgroundSize = "320px";
                     celda.style.backgroundPosition = "50% 50%";
 
@@ -245,56 +256,10 @@ class JuegoMemoria extends Tablero{
                 //alert('Prueba otra vez');
             }
 
-
-
             this.numDespejados = 0;
         }
 
     }
-
-
-
-
-/*
-    reiniciar(){
-        let boton = evento.currentTarget;
-        boton.getElementById("button").addEventListener("click",myFunction);
-
-    }
-    myFunction() {
-        boton.getElementById("button").innerHTML = "YOU CLICKED ME!";
-    }
-*/
-
-
-    /*
-    reiniciar(elEvento){
-        let evento = elEvento || window.event;
-        
-
-        let muestraMensaje = "Hola, mundo!";
-        let boton = document.getElementById("button");
-        
-
-        boton.onclick = muestraMensaje;
-
-        if (boton.onclick) {
-            alert('Has clickado en el botón');
-        }
-
-    }
-    */
-/*
-    reiniciar(){
-        
-        var boton = document.getElementById("button");
-
-        boton.onclick = function(){
-            console.log("Has clickado el botón");
-        }
-        
-    }*/
-
 
 }
 
@@ -302,3 +267,6 @@ class JuegoMemoria extends Tablero{
 let juegoMemoria1 = new JuegoMemoria(maxFilas, maxColumnas);
 console.log(juegoMemoria1.arrayTablero);
 juegoMemoria1.dibujarTableroDOM();
+
+
+

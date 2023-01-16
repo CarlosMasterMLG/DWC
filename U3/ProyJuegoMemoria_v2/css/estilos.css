@@ -1,5 +1,5 @@
 body{
-    background: rgb(253, 37, 37);
+    background: rgb(3, 139, 230);
 }
 table{
     margin-left: auto;
@@ -9,7 +9,7 @@ table{
 td{
     width: 300px;
     height: 150px;
-    background-image: url("/img/p5_reversoCarta.png");
+    background-image: url("/img/p3_reversoCarta.png");
     background-size: 320px;
     background-position: 50% 50%;
 
