@@ -64,6 +64,11 @@ class Tablero{
             document.body.appendChild(tablero);
         }
 
+        const boton = document.createElement('button');
+        boton.type = 'button';
+        boton.innerHTML = 'Reiniciar Juego';
+        document.body.appendChild(boton);
+
 
         /*
         for (let i = 0; i < this.filas; i++) {
@@ -181,6 +186,7 @@ class JuegoMemoria extends Tablero{
                 celda = document.getElementById(`f${i}_c${j}`);
 
                 celda.addEventListener('click', this.despejar.bind(this));
+
             }   
         }
     }
@@ -206,8 +212,6 @@ class JuegoMemoria extends Tablero{
         celda.style.backgroundImage = 'url(../'+contenidoCelda+')';
         celda.style.backgroundSize = "302px";
 
-        
-
         this.numDespejados = this.numDespejados + 1;
 
         if (this.numDespejados == 1) {
@@ -228,9 +232,11 @@ class JuegoMemoria extends Tablero{
                 //Este comentario es una prueba del GIT
 
             } else {
+                setTimeout(() => {
+                    this.posPrimerDespejado.style.background = "white";
+                    celda.style.background  = "white";
+                }, "500");
                 
-                this.posPrimerDespejado.style.background = "white";
-                celda.style.background  = "white";
                 //alert('Prueba otra vez');
             }
 
@@ -240,6 +246,49 @@ class JuegoMemoria extends Tablero{
         }
 
     }
+
+
+
+
+/*
+    reiniciar(){
+        let boton = evento.currentTarget;
+        boton.getElementById("button").addEventListener("click",myFunction);
+
+    }
+    myFunction() {
+        boton.getElementById("button").innerHTML = "YOU CLICKED ME!";
+    }
+*/
+
+
+    /*
+    reiniciar(elEvento){
+        let evento = elEvento || window.event;
+        
+
+        let muestraMensaje = "Hola, mundo!";
+        let boton = document.getElementById("button");
+        
+
+        boton.onclick = muestraMensaje;
+
+        if (boton.onclick) {
+            alert('Has clickado en el botón');
+        }
+
+    }
+    */
+/*
+    reiniciar(){
+        
+        var boton = document.getElementById("button");
+
+        boton.onclick = function(){
+            console.log("Has clickado el botón");
+        }
+        
+    }*/
 
 
 }
