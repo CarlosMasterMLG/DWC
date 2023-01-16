@@ -1,16 +1,18 @@
+body{
+    background: rgb(253, 37, 37);
+}
 table{
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
 }
-table,tr,td{         
-    border: 4px solid black;
-    background-color: white;
-    border-collapse: collapse;
-}
 td{
     width: 300px;
     height: 150px;
+    background-image: url("/img/p5_reversoCarta.png");
+    background-size: 320px;
+    background-position: 50% 50%;
+
 }
 img{
     object-fit: cover;

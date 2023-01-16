@@ -225,16 +225,21 @@ class JuegoMemoria extends Tablero{
             
             if (this.primerDespejado == contenidoCelda) {
                 
-                //alert("Has desbloqueado una pareja");
-                
-                //celda.removeEventListener('click', this.despejarCelda);
-                //this.posPrimerDespejado.removeEventListener('click', this.despejarCelda);
-                //Este comentario es una prueba del GIT
+                setTimeout(() => {
+                    this.posPrimerDespejado.style.background = "rgb(253, 37, 37)";
+                    celda.style.background  = "rgb(253, 37, 37)";
+                }, "500");
 
             } else {
                 setTimeout(() => {
-                    this.posPrimerDespejado.style.background = "white";
-                    celda.style.background  = "white";
+                    this.posPrimerDespejado.style.backgroundImage = 'url(/img/p5_reversoCarta.png)';
+                    this.posPrimerDespejado.style.backgroundSize = '320px';
+                    this.posPrimerDespejado.style.backgroundPosition = '50% 50%';
+
+                    celda.style.backgroundImage = 'url(/img/p5_reversoCarta.png)';
+                    celda.style.backgroundSize = "320px";
+                    celda.style.backgroundPosition = "50% 50%";
+
                 }, "500");
                 
                 //alert('Prueba otra vez');
