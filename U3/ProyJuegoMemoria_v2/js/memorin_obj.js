@@ -243,11 +243,11 @@ class JuegoMemoria extends Tablero{
 
             } else {
                 setTimeout(() => {
-                    this.posPrimerDespejado.style.backgroundImage = 'url(/img/p3_reversoCarta.png)';
+                    this.posPrimerDespejado.style.backgroundImage = 'url(/img/p5_reversoCarta.png)';
                     this.posPrimerDespejado.style.backgroundSize = '320px';
                     this.posPrimerDespejado.style.backgroundPosition = '50% 50%';
 
-                    celda.style.backgroundImage = 'url(/img/p3_reversoCarta.png)';
+                    celda.style.backgroundImage = 'url(/img/p5_reversoCarta.png)';
                     celda.style.backgroundSize = "320px";
                     celda.style.backgroundPosition = "50% 50%";
 
