@@ -94,6 +94,7 @@ class JuegoMemoria extends Tablero{
     constructor(filas, columnas){
         super(filas, columnas);
 
+        this.totalDespejados = 0;
         this.numDespejados = 0;
         this.primerDespejado = "";
         this.posPrimerDespejado = "";
@@ -238,7 +239,20 @@ class JuegoMemoria extends Tablero{
                     celda.style.background  = "rgb(3, 139, 230)";*/
                     this.posPrimerDespejado.style.display = "none";
                     celda.style.display = "none";
+                    /*NO LE GUSTA A LA PROFE ELIMINAR LAS CELDAS, MEJOR ELIMINAR EL EVENTO*/
                 }, "500");
+
+                /*alert('totalDespejados = '+this.totalDespejados+', y el numero de parejas es: '+this.filas*this.columnas);*/
+
+                if (this.totalDespejados == this.filas*this.columnas - 2) {
+
+                    setTimeout(() => {
+                        alert('Enhorabuena');
+                    }, 600);
+
+                }
+                
+                this.totalDespejados = this.totalDespejados + 2;
 
             } else {
                 setTimeout(() => {
