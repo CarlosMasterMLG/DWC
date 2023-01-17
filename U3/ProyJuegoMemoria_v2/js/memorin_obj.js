@@ -237,8 +237,7 @@ class JuegoMemoria extends Tablero{
                     /*this.posPrimerDespejado.style.background = "rgb(3, 139, 230)";
                     celda.style.background  = "rgb(3, 139, 230)";*/
                     this.posPrimerDespejado.style.display = "none";
-                    celda.style.display = "none";/*PREGUNTAR A BELEN SI ASI ESTA BIEN, PORQUE
-                                                    VA CAMBIANDO LA ESTRUCTURA DE LA TABLA*/
+                    celda.style.display = "none";
                 }, "500");
 
             } else {
