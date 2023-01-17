@@ -240,6 +240,12 @@ class JuegoMemoria extends Tablero{
                     this.posPrimerDespejado.style.display = "none";
                     celda.style.display = "none";
                     /*NO LE GUSTA A LA PROFE ELIMINAR LAS CELDAS, MEJOR ELIMINAR EL EVENTO*/
+
+                    /*
+                    this.posPrimerDespejado.removeEventListener('click', this.despejarCelda);
+                    celda.removeEventListener('click', this.despejarCelda);
+*/
+
                 }, "500");
 
                 /*alert('totalDespejados = '+this.totalDespejados+', y el numero de parejas es: '+this.filas*this.columnas);*/
