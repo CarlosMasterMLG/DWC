@@ -181,7 +181,7 @@ class JuegoMemoria extends Tablero{
         boton.type = 'button';
         /*boton.setAttribute('id', 'boton');*/
         boton.onclick = function() {
-            let seguro = confirm('¿Estas seguro?');
+            let seguro = confirm('¿Estás seguro?');
 
             if (seguro) {
                 
