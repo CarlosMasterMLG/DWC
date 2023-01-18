@@ -47,6 +47,16 @@ class Tablero{
 
         document.write('<h1>JUEGO DE MEMORIA<br>Carlos Blanco</h1>');
 
+
+        /*La puntuación máxima es 10 POR PAREJA, es decir si hay 4 cartas
+        hay 2 parejas y eso son 20 puntos.
+        Aunque parezca trampa se reinicia con cada par de cartas que levantes.
+        Se reinicia cada vez que levantes dos cartas distintas a la combinacion
+        anterior*/
+        let puntuacion = document.createElement('h3');
+        puntuacion.innerHTML = 'Puntuación: 0/0';
+        document.body.appendChild(puntuacion);
+
         let tablero = document.createElement('table');
         let fila;
         let columna;
@@ -164,10 +174,6 @@ class JuegoMemoria extends Tablero{
     dibujarTableroDOM(){
         super.dibujarTableroDOM();
 
-        let puntuacion = document.createElement('h2');
-        puntuacion.innerHTML = 'Puntuación: 0/0';
-        document.body.appendChild(puntuacion);
-
         let celda;
 
         for (let i = 0; i < this.filas; i++) {
@@ -189,7 +195,7 @@ class JuegoMemoria extends Tablero{
                 location.reload();
             }
         }
-        boton.innerHTML = 'Reiniciar Juego';
+        boton.innerHTML = 'Nueva partida';
         document.body.appendChild(boton);
     }
 
@@ -206,6 +212,8 @@ class JuegoMemoria extends Tablero{
 
         let fila = parseInt(celda.dataset.fila);
         let columna = parseInt(celda.dataset.columna);
+
+        /*let puntuacion = document.getElementByTagName('h3');*/
 
         celda.dataset.despejado = true;
         
@@ -231,6 +239,13 @@ class JuegoMemoria extends Tablero{
                     /*Como no me va bien el removeEventListener directamente bloqueo las celdas.
                     Antes hacia que estas se eliminaran de la tabla pero "el cliente" me dijo que mejor que no las eliminara,
                     (al eliminarlas se descolocaba un poco la tabla*/
+
+                    
+                    /*puntuacion.innerHTML = 'FUNCIONA';*/
+
+                    celda.style.background = 'black';
+                    this.posPrimerDespejado.style.background = 'black';
+
                     celda.style.pointerEvents = 'none';
                     this.posPrimerDespejado.style.pointerEvents = 'none';
 
