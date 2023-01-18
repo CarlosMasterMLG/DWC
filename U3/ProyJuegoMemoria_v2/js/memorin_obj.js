@@ -99,7 +99,6 @@ class JuegoMemoria extends Tablero{
         this.primerDespejado = "";
         this.posPrimerDespejado = "";
         this.colocarParejas();
-        // this.dibujarTableroDOM();
     }
 
     // Colocamos las parejas
@@ -165,6 +164,10 @@ class JuegoMemoria extends Tablero{
     dibujarTableroDOM(){
         super.dibujarTableroDOM();
 
+        let puntuacion = document.createElement('h2');
+        puntuacion.innerHTML = 'Puntuación: 0/0';
+        document.body.appendChild(puntuacion);
+
         let celda;
 
         for (let i = 0; i < this.filas; i++) {
@@ -179,21 +182,11 @@ class JuegoMemoria extends Tablero{
 
         const boton = document.createElement('button');
         boton.type = 'button';
-        /*boton.setAttribute('id', 'boton');*/
         boton.onclick = function() {
             let seguro = confirm('¿Estás seguro?');
 
             if (seguro) {
-                
                 location.reload();
-
-                /*this.JuegoMemoria.colocarParejas();
-                new JuegoMemoria(maxFilas, maxColumnas);*/
-                /*
-                let juegoMemoria1 = new JuegoMemoria(maxFilas, maxColumnas);
-                console.log(juegoMemoria1.arrayTablero);
-                juegoMemoria1.dibujarTableroDOM();*/
-                
             }
         }
         boton.innerHTML = 'Reiniciar Juego';
@@ -215,7 +208,6 @@ class JuegoMemoria extends Tablero{
         let columna = parseInt(celda.dataset.columna);
 
         celda.dataset.despejado = true;
-        //celda.style.backgroundColor = 'grey';
         
         let contenidoCelda = this.arrayTablero[fila][columna];
         celda.style.backgroundImage = 'url(../'+contenidoCelda+')';
@@ -235,20 +227,14 @@ class JuegoMemoria extends Tablero{
             if (this.primerDespejado == contenidoCelda) {
                 
                 setTimeout(() => {
-                    /*this.posPrimerDespejado.style.background = "rgb(3, 139, 230)";
-                    celda.style.background  = "rgb(3, 139, 230)";*/
-                    this.posPrimerDespejado.style.display = "none";
-                    celda.style.display = "none";
-                    /*NO LE GUSTA A LA PROFE ELIMINAR LAS CELDAS, MEJOR ELIMINAR EL EVENTO*/
 
-                    /*
-                    this.posPrimerDespejado.removeEventListener('click', this.despejarCelda);
-                    celda.removeEventListener('click', this.despejarCelda);
-*/
+                    /*Como no me va bien el removeEventListener directamente bloqueo las celdas.
+                    Antes hacia que estas se eliminaran de la tabla pero "el cliente" me dijo que mejor que no las eliminara,
+                    (al eliminarlas se descolocaba un poco la tabla*/
+                    celda.style.pointerEvents = 'none';
+                    this.posPrimerDespejado.style.pointerEvents = 'none';
 
                 }, "500");
-
-                /*alert('totalDespejados = '+this.totalDespejados+', y el numero de parejas es: '+this.filas*this.columnas);*/
 
                 if (this.totalDespejados == this.filas*this.columnas - 2) {
 

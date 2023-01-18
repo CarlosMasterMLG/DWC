@@ -23,6 +23,10 @@ h1{
     text-align: center;
     color: white;
 }
+h2{
+    text-align: center;
+    color: white;
+}
 button{
     margin: 10px 48%;
     cursor: pointer;
