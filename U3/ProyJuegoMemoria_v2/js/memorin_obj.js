@@ -19,7 +19,7 @@ class Tablero{
     constructor(filas, columnas){
     this.filas = filas;
     this.columnas = columnas;
-    this.puntuacion = 0;
+    this.puntuacion =  parseFloat(0);
     this.puntuacionTotal = 10;
 
     this.crearTablero();
@@ -61,7 +61,7 @@ class Tablero{
         anterior*/
         
         let puntuacion = document.createElement('h3');
-        puntuacion.innerHTML = `Puntuación: ${this.puntuacion}/${this.puntuacionTotal}`;
+        puntuacion.innerHTML = `Puntuación: <b id="puntos"> ${this.puntuacion}/${this.puntuacionTotal}</b>`;
         document.body.appendChild(puntuacion);
 
         let tablero = document.createElement('table');
@@ -116,6 +116,8 @@ class JuegoMemoria extends Tablero{
         this.primerDespejado = "";
         this.posPrimerDespejado = "";
         this.colocarParejas();
+        this.arrayCartas = [];
+        this.esPareja = false;
     }
 
     // Colocamos las parejas
@@ -240,15 +242,10 @@ class JuegoMemoria extends Tablero{
         if (this.numDespejados == 2) {
             
             if (this.primerDespejado == contenidoCelda) {
-                
+
+                this.esPareja = true;
+
                 setTimeout(() => {
-
-                    /*Como no me va bien el removeEventListener directamente bloqueo las celdas.
-                    Antes hacia que estas se eliminaran de la tabla pero "el cliente" me dijo que mejor que no las eliminara,
-                    (al eliminarlas se descolocaba un poco la tabla*/
-
-                    
-                    /*puntuacion.innerHTML = 'FUNCIONA';*/
 
                     celda.style.background = 'black';
                     this.posPrimerDespejado.style.background = 'black';
@@ -258,17 +255,21 @@ class JuegoMemoria extends Tablero{
 
                 }, "500");
 
+                //this.puntuacion.innerHTML = `Esto es una mierda`;
+
                 if (this.totalDespejados == this.filas*this.columnas - 2) {
 
                     setTimeout(() => {
-                        alert('Enhorabuena');
+                        alert(`Enhorabuena, has obtenido una puntuación de ${this.puntuacion}`);
                     }, 600);
-
                 }
                 
                 this.totalDespejados = this.totalDespejados + 2;
 
             } else {
+
+                this.esPareja = false;
+                
                 setTimeout(() => {
                     this.posPrimerDespejado.style.backgroundImage = 'url(/img/p5_reversoCarta.png)';
                     this.posPrimerDespejado.style.backgroundSize = '320px';
@@ -280,16 +281,67 @@ class JuegoMemoria extends Tablero{
 
                 }, "500");
                 
-                //alert('Prueba otra vez');
             }
 
             this.numDespejados = 0;
+            this.puntos(this.posPrimerDespejado, celda);
         }
 
     }
 
-    puntuacion(){
+    puntos(carta1, carta2){
+        
+        this.arrayCartas.push(carta1);
+        this.arrayCartas.push(carta2);
 
+        if (this.arrayCartas.length >= 3) {
+            
+            for (let i = 0; i < this.arrayCartas.length; i++) {
+            
+                /*if (this.arrayCartas[i] == carta1 || this.arrayCartas[i] == carta2) {                    
+                }*/
+
+                if (this.arrayCartas[i] != carta1 && this.arrayCartas[i] != carta2) {
+                    
+                    delete this.arrayCartas[i];
+
+                }
+                
+            }
+            
+        }
+
+        let repeticiones = 0;
+
+        if (this.esPareja) {
+                
+            for (let i = 0; i < this.arrayCartas.length; i++) {
+                
+                let cartaComparada = this.arrayCartas[i]
+                    
+                if (this.arrayCartas[i] = cartaComparada && this.arrayCartas != undefined) {
+                       repeticiones++;
+                }
+                    
+            }
+
+            repeticiones = repeticiones-1;
+
+            if (repeticiones == 1) {
+                this.puntuacion = this.puntuacion + 10;
+                document.getElementById('puntos').innerHTML = `${this.puntuacion}/${this.puntuacionTotal}`; 
+            } else if (repeticiones == 2) {
+                this.puntuacion = this.puntuacion + 5;
+                document.getElementById('puntos').innerHTML = `${this.puntuacion}/${this.puntuacionTotal}`;
+            } else if (repeticiones == 3) {
+                this.puntuacion = this.puntuacion + 2.5;
+                document.getElementById('puntos').innerHTML = `${this.puntuacion}/${this.puntuacionTotal}`;
+            } else {
+                this.puntuacion = this.puntuacion + 0;
+                document.getElementById('puntos').innerHTML = `${this.puntuacion}/${this.puntuacionTotal}`;
+            }
+
+        }
     }
 
 }
