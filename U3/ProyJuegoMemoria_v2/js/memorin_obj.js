@@ -19,6 +19,8 @@ class Tablero{
     constructor(filas, columnas){
     this.filas = filas;
     this.columnas = columnas;
+    this.puntuacion = 0;
+    this.puntuacionTotal = 10;
 
     this.crearTablero();
     }
@@ -40,6 +42,10 @@ class Tablero{
     
         }
 
+        let totalCasillas = this.filas*this.columnas;
+        let totalParejas = totalCasillas/2;
+        this.puntuacionTotal = totalParejas * 10;
+
     }
 
     // Dibujamos el tablero
@@ -53,8 +59,9 @@ class Tablero{
         Aunque parezca trampa se reinicia con cada par de cartas que levantes.
         Se reinicia cada vez que levantes dos cartas distintas a la combinacion
         anterior*/
+        
         let puntuacion = document.createElement('h3');
-        puntuacion.innerHTML = 'Puntuación: 0/0';
+        puntuacion.innerHTML = `Puntuación: ${this.puntuacion}/${this.puntuacionTotal}`;
         document.body.appendChild(puntuacion);
 
         let tablero = document.createElement('table');
@@ -278,6 +285,10 @@ class JuegoMemoria extends Tablero{
 
             this.numDespejados = 0;
         }
+
+    }
+
+    puntuacion(){
 
     }
 
