@@ -8,11 +8,6 @@ while((maxFilas * maxColumnas) % 2 != 0 || maxColumnas * maxFilas < 4 || maxFila
     maxFilas = prompt('¿Cuantas filas quiere que tenga el tablero?');
     maxColumnas = prompt('¿Cuantas columnas quiere que tenga el tablero?');
 }
-/*
-window.onload = function() {
-
-    
-}*/
 
 // Creamos la clase Tablero
 class Tablero{
@@ -52,13 +47,6 @@ class Tablero{
     dibujarTableroDOM(){
 
         document.write('<h1>JUEGO DE MEMORIA<br>Carlos Blanco</h1>');
-
-
-        /*La puntuación máxima es 10 POR PAREJA, es decir si hay 4 cartas
-        hay 2 parejas y eso son 20 puntos.
-        Aunque parezca trampa se reinicia con cada par de cartas que levantes.
-        Se reinicia cada vez que levantes dos cartas distintas a la combinacion
-        anterior*/
         
         let puntuacion = document.createElement('h3');
         puntuacion.innerHTML = `Puntuación: <b id="puntos"> ${this.puntuacion}/${this.puntuacionTotal}</b>`;
@@ -85,9 +73,6 @@ class Tablero{
             }
             document.body.appendChild(tablero);
         }
-
-        
-
     }
 
     modificarFilas(nuevasFilas){
@@ -118,6 +103,7 @@ class JuegoMemoria extends Tablero{
         this.colocarParejas();
         this.arrayCartas = [];
         this.esPareja = false;
+        this.horaInicio = new Date().getTime();
     }
 
     // Colocamos las parejas
@@ -177,9 +163,6 @@ class JuegoMemoria extends Tablero{
 
     }
 
-
-
-
     dibujarTableroDOM(){
         super.dibujarTableroDOM();
 
@@ -222,8 +205,6 @@ class JuegoMemoria extends Tablero{
         let fila = parseInt(celda.dataset.fila);
         let columna = parseInt(celda.dataset.columna);
 
-        /*let puntuacion = document.getElementByTagName('h3');*/
-
         celda.dataset.despejado = true;
         
         let contenidoCelda = this.arrayTablero[fila][columna];
@@ -255,12 +236,16 @@ class JuegoMemoria extends Tablero{
 
                 }, "500");
 
-                //this.puntuacion.innerHTML = `Esto es una mierda`;
-
                 if (this.totalDespejados == this.filas*this.columnas - 2) {
 
+                    let horaFinal = new Date().getTime();
+
+                    let duracionJuego = horaFinal - this.horaInicio;
+
+                    duracionJuego = duracionJuego / 1000;
+
                     setTimeout(() => {
-                        alert(`Enhorabuena, has obtenido una puntuación de ${this.puntuacion}`);
+                        alert(`Enhorabuena, has obtenido una puntuación de ${this.puntuacion} puntos sobre ${this.puntuacionTotal}, has tardado ${duracionJuego} segundos.`);
                     }, 600);
                 }
                 
