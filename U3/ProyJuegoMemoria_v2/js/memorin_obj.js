@@ -297,18 +297,13 @@ class JuegoMemoria extends Tablero{
         if (this.arrayCartas.length >= 3) {
             
             for (let i = 0; i < this.arrayCartas.length; i++) {
-            
-                /*if (this.arrayCartas[i] == carta1 || this.arrayCartas[i] == carta2) {                    
-                }*/
 
                 if (this.arrayCartas[i] != carta1 && this.arrayCartas[i] != carta2) {
                     
                     delete this.arrayCartas[i];
 
                 }
-                
             }
-            
         }
 
         let repeticiones = 0;
@@ -340,10 +335,8 @@ class JuegoMemoria extends Tablero{
                 this.puntuacion = this.puntuacion + 0;
                 document.getElementById('puntos').innerHTML = `${this.puntuacion}/${this.puntuacionTotal}`;
             }
-
         }
     }
-
 }
 
 // Ejecutamos
