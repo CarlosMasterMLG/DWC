@@ -6,44 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validación de un formulario</title>
     <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/validacionNIF.js"></script>
 </head>
 <body>
     
-    <div class="formulario">
+    <main>
         <h1>Registrar usuario</h1>
+        <form action="#" autocomplete="off">
+            <label for="nombre">Nombre</label><br>
+            <input type="text" id="nombre" name="nombre" autofocus maxlength="20"><br>
+            <label for="apellidos">Apellidos</label><br>
+            <input type="text" id="apellidos" name="apellidos" maxlength="60"><br>
+            <label for="email">Email</label><br>
+            <input type="text" id="email" name="email" maxlength="250"><br>
+            <label for="NIF">NIF</label><br>
+            <input type="text" id="NIF" name="NIF" maxlength="9"><br>
+            <button id="botonEnviar" disabled>Enviar</button>
+        </form>
+    </main>
 
-        <div class="input">
-            <span>Nombre</span>
-            <br>
-            <input type="text" id="nombre" maxlength="20" required="required">
-            <br>
+    <div id="error">
+
+    </div>
+
+    <div id="telon">
+        <div id="mensaje">
+            <p>Los datos se han enviado correctamente</p>
         </div>
-
-        <div class="input">
-            <span>Apellidos</span>
-            <br>
-            <input type="text" id="apellidos" maxlength="57" required="required">
-            <br>
-        </div>
-
-        <div class="input">
-            <span>Email</span>
-            <br>
-            <input type="text" id="email" maxlength="57" required="required">
-            <br>
-        </div>
-
-        <div class="input">
-            <span>NIF</span>
-            <br>
-            <input type="text" id="nif" maxlength="57" required="required">
-            <br>
-        </div>
-
-        <div class="input boton">
-            <input type="submit" value="ENVIAR">
-        </div>
-
     </div>
 
 </body>
