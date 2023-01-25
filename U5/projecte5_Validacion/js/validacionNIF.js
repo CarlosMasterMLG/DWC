@@ -31,3 +31,15 @@ window.addEventListener('load', function(){
     apellidos.addEventListener('keyup', validarNombre);
     email.addEventListener('keyup', validarEmail);
 });
+
+
+/*
+let arrayNuevo = [1,2,3,4];
+let mapaNuevo = {"clave1":"valor1"};
+mapaNuevo.test("clave1","valor1");
+
+console.log(mapaNuevo);
+console.log(mapaNuevo.clave1);
+mapaNuevo.clave1 = "valor2";
+console.log(mapaNuevo);
+console.log(mapaNuevo.clave2);*/
