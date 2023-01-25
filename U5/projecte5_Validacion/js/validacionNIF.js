@@ -22,6 +22,17 @@ function validarNombre() {
     }
 }
 
+/*
+Funcion para validar varios patrones
+*/
+function validarDatos(){
+    let patrones = new Map();
+
+    patrones.set("nombre", /^[A-Za-záéíóúüàèiòÁÉÍÓÚÀÈÒÜñÑçÇ ]{2,}$/);
+
+}
+
+// Ejecucion aplicacion
 window.addEventListener('load', function(){
     let nombre = document.getElementById('nombre');
     let apellidos = document.getElementById('apellidos');
