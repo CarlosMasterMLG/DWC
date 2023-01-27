@@ -1,56 +1,31 @@
 /**
- * Función para validar el nombre y apellidos del formulario
+ * Función para validar varios patrones
  */
-function validarNombre() {
-    let patron = /^[A-Za-záéíóúüàèiòÁÉÍÓÚÀÈÒÜñÑçÇ ]{2,}$/;
-
-    this.className = "";
-    if (patron.test(this.value)) {
-        this.className = "verde";
-    }
-}
-
-/**
- * Función para validar el email del formulario
- */
- function validarEmail() {
-    let patron = /^.+@.+$/;
-
-    this.className = "";
-    if (patron.test(this.value)) {
-        this.className = "verde";
-    }
-}
-
-/*
-Funcion para validar varios patrones
-*/
 function validarDatos(){
     let patrones = new Map();
 
-    patrones.set("nombre", /^[A-Za-záéíóúüàèiòÁÉÍÓÚÀÈÒÜñÑçÇ ]{2,}$/);
+    patrones.set("nombre", /^[A-Za-záéíóúüàèiòÁÉÍÓÚÀÈÒÜñÑçÇ]{2,}$/);
+    patrones.set("apellidos", /^[A-Za-záéíóúüàèiòÁÉÍÓÚÀÈÒÜñÑçÇ ]{2,}$/);
+    patrones.set("email", /^.+@.+$/);
+    patrones.set("telefonoNacional", /^([89][^09]|[67][0-9])[0-9]{7}$/);
+    //patrones.set("NIF", /^[0123456789]{8}.[A-Za-Z]{1}$/);
+    
+    this.className = "";
+    if (patrones.get(this.id).test(this.value)) {
+        this.className = "verde";
+    }
 
-}
+} 
 
-// Ejecucion aplicacion
-window.addEventListener('load', function(){
+// Ejecución de la aplicación
+    window.addEventListener('load', function(){
     let nombre = document.getElementById('nombre');
     let apellidos = document.getElementById('apellidos');
-    let email = this.document.getElementById('email');
+    let email = document.getElementById('email');
+    let NIF = document.getElementById('NIF');
 
-    nombre.addEventListener('keyup', validarNombre);
-    apellidos.addEventListener('keyup', validarNombre);
-    email.addEventListener('keyup', validarEmail);
+    nombre.addEventListener('keyup', validarDatos);
+    apellidos.addEventListener('keyup', validarDatos);
+    email.addEventListener('keyup', validarDatos);
+    
 });
-
-
-/*
-let arrayNuevo = [1,2,3,4];
-let mapaNuevo = {"clave1":"valor1"};
-mapaNuevo.test("clave1","valor1");
-
-console.log(mapaNuevo);
-console.log(mapaNuevo.clave1);
-mapaNuevo.clave1 = "valor2";
-console.log(mapaNuevo);
-console.log(mapaNuevo.clave2);*/
