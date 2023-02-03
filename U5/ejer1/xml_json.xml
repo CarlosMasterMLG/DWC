@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <contenedores>
-    <grandes></grandes>
-    <medianos></medianos>
-    <verticales></verticales>
+    <grandes>Acepta envases grandes</grandes>
+    <medianos>No acepta envases grandes</medianos>
+    <verticales>Acepta envases altos</verticales>
 </contenedores>
 
 <envases>
-    <ancho></ancho>
-    <alto></alto>
-    <medianoAncho></medianoAncho>
-    <medianoAlto></medianoAlto>
-    <pequeno></pequeno>
+    <ancho>Valido para alimentos</ancho>
+    <alto>Valido para alimentos</alto>
+    <medianoAncho>Valido para alimentos</medianoAncho>
+    <medianoAlto>Resistente a sustancias corrosivas</medianoAlto>
+    <pequeno>Resistente a sustancias corrosivas</pequeno>
 </envases>
 
 <liquidos>
