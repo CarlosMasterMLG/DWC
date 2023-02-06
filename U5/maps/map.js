@@ -14,17 +14,10 @@ registroPacientes.forEach((value)=>{
 
 //console.log(registroPacientes2);
 
-let prueba = [registroPacientes2];
+let arrayPacientes = [registroPacientes2];
 
-console.log(prueba);
+console.log(arrayPacientes);
 
+let stringPacientes = registroPacientes2.toString();
 
-for (let i = 0; i < prueba.length; i++) {
-    
-    for (let j = 0; j < prueba[i].length; j++) {
-        
-        console.log(prueba[i][j]);
-        
-    }
-    
-}
+console.log(stringPacientes);
