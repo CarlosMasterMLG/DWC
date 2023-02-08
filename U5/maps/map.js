@@ -21,3 +21,6 @@ console.log(arrayPacientes);
 let stringPacientes = registroPacientes2.toString();
 
 console.log(stringPacientes);
+
+const prueba = registroPacientes2.split("=>");
+console.log(prueba);
