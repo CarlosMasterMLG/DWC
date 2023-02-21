@@ -6,7 +6,7 @@ window.onload = function () {
     let boton = document.getElementById("boton");
     boton.onclick = function () {
 
-        document.getElementById("demo").innerHTML = "Funciona el evento";
+        cambiarParrafo();
         
     }
 
@@ -25,5 +25,11 @@ function borrarTitulo() {
 
     let h2 = document.getElementsByTagName("h2")[0];
     h2.parentNode.removeChild(h2);
+    
+}
+
+function cambiarParrafo() {
+
+    document.getElementById("demo").innerHTML = "Funciona el evento";
     
 }
