@@ -11,10 +11,10 @@ window.onload = function () {
         cambiarParrafo();
         agregarIMG();
 
-        const div = document.createElement("div");
+        /*const div = document.createElement("div");
         div.textContent = "No le veo utilidad al DOM";
         const app = document.querySelector("#app");
-        app.insertBefore
+        app.insertBefore*/
 
         
         
