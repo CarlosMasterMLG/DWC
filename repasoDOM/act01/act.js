@@ -6,7 +6,10 @@ window.onload = function () {
     let boton = document.getElementById("boton");
     boton.onclick = function () {
 
+        boton.style.backgroundColor = "red";
+
         cambiarParrafo();
+        agregarIMG();
         
     }
 
@@ -30,6 +33,14 @@ function borrarTitulo() {
 
 function cambiarParrafo() {
 
-    document.getElementById("demo").innerHTML = "Funciona el evento";
+    document.getElementById("demo").innerHTML = "Yo al recordar lo que tengo que recuperar";
+    
+}
+
+function agregarIMG() {
+
+    var image = new Image();
+    image.src = '/mario.jpg';
+    document.getElementById('imgContainer').appendChild(image);
     
 }
