@@ -11,21 +11,21 @@ window.onload = function () {
     farenheit.onclick = function() {
 
         let conversorTemperaturas = new ConversorTemperaturas;
-        conversor.aFarenheit();
+        conversorTemperaturas.aFarenheit();
         
     }
 
     celsius.onclick = function() {
 
         let conversorTemperaturas = new ConversorTemperaturas;
-        conversor.aCelsius();
+        conversorTemperaturas.aCelsius();
         
     }
 
 }
 
 
-let conversor = new ConversorTemperaturas();
+// let conversor = new ConversorTemperaturas();
 
 
 class ConversorTemperaturas{
